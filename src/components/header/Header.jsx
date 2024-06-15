@@ -22,7 +22,7 @@ export default function Header() {
             <button type="button" className="btn btn-primary">Checke Jetzt Aus</button>
           </div>
           <div>
-            <img src={machine} alt="Vending Machine" className="max-w-full md:max-w-[300px] xl:max-w-[500px] mx-auto" />
+            <img src={machine} alt="Machine Bild" className="max-w-full md:max-w-[300px] xl:max-w-[500px] mx-auto" />
           </div>
         </section>
       </div>

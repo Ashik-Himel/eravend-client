@@ -1,5 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import FeatureSection from "../components/home/FeatureSection";
+import JoinSection from "../components/home/JoinSection";
 
 export default function Home() {
   return (
@@ -9,6 +10,7 @@ export default function Home() {
       </Helmet>
 
       <FeatureSection />
+      <JoinSection />
     </main>
   );
 }
