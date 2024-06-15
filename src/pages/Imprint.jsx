@@ -9,7 +9,7 @@ export default function Imprint() {
 
       <section>
         <div className="container">
-          <h2 className="text-4xl font-medium text-primary mt-8 text-center">This page is under construction!</h2>
+          <h2 className="text-4xl font-medium text-primary mt-8 text-center !leading-[1.4]">This page is under construction!</h2>
         </div>
       </section>
     </main>
