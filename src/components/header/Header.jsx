@@ -8,7 +8,7 @@ export default function Header() {
   return (
     <header className={pathname === "/" ? "[background-image:linear-gradient(rgba(255,255,255,0.7),rgba(255,255,255,0.7)),url(/hero-bg.png)] bg-no-repeat bg-cover bg-center" : "bg-bg-color"}>
       <div className="container">
-        <nav className="py-6 flex justify-between items-center gap-4">
+        <nav className="py-6 md:py-4 flex justify-between items-center gap-4">
           <Link to='/'>
             <img src={logo} alt="Logo" className="w-full max-w-[250px]" />
           </Link>

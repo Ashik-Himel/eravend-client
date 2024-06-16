@@ -1,6 +1,15 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function ReadySection() {
+  const navigate = useNavigate();
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    const amount = e.target.amount.value;
+    const frequency = e.target.frequency.value;
+    navigate(`/profit-details?amount=${amount}&frequency=${frequency}`);
+  }
+
   return (
     <section className="mt-16 bg-gray-100 py-12 md:py-20">
       <div className="container">
@@ -11,7 +20,7 @@ export default function ReadySection() {
             <Link to="/invest" className="btn btn-primary">Jetzt Investieren</Link>
           </div>
           <div className="w-full md:w-auto">
-            <form className="bg-bg-color px-6 py-10 rounded-lg">
+            <form className="bg-bg-color px-6 py-10 rounded-lg" onSubmit={handleSubmit}>
               <h3 className="text-3xl font-medium text-center mb-6">Gewinn Berechnen</h3>
               <label htmlFor="amount" className="block font-medium mb-2">Investitionsbetrag (€)</label>
               <input className="input w-full border border-gray-300 mb-4" type="number" min="6000" name="amount" id="amount" placeholder="Investitionsbetrag" required />

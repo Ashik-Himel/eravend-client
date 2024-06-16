@@ -4,7 +4,7 @@ import { FaTiktok, FaInstagram, FaYoutube, FaFacebookF } from "react-icons/fa";
 export default function Footer() {
   return (
     <footer>
-      <section className="bg-bg-color py-12 md:py-16">
+      <section className="bg-bg-color py-12">
         <div className="container">
           <div className="flex flex-col md:flex-row justify-between gap-8">
             <div className="w-full md:w-3/5">

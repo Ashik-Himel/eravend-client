@@ -3,6 +3,7 @@ import Layout from "../layout/Layout";
 import Home from "../pages/Home";
 import Invest from "../pages/Invest";
 import Imprint from "../pages/Imprint";
+import ProfitDetails from "../pages/ProfitDetails";
 
 export const router = createBrowserRouter([
   {
@@ -12,6 +13,10 @@ export const router = createBrowserRouter([
       {
         path: '/',
         element: <Home />
+      },
+      {
+        path: '/profit-details',
+        element: <ProfitDetails />
       },
       {
         path: '/invest',
