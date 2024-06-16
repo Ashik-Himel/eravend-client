@@ -15,6 +15,9 @@ export default {
     extend: {
       fontFamily: {
         poppins: '"Poppins",sans-serif'
+      },
+      colors: {
+        'bg-color': '#e2f0f6'
       }
     },
   },

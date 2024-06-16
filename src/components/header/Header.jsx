@@ -6,7 +6,7 @@ export default function Header() {
   const { pathname } = useLocation();
 
   return (
-    <header className={pathname === "/" ? "[background-image:linear-gradient(rgba(255,255,255,0.7),rgba(255,255,255,0.7)),url(/hero-bg.png)] bg-no-repeat bg-cover bg-center" : "bg-[#e2f0f6]"}>
+    <header className={pathname === "/" ? "[background-image:linear-gradient(rgba(255,255,255,0.7),rgba(255,255,255,0.7)),url(/hero-bg.png)] bg-no-repeat bg-cover bg-center" : "bg-bg-color"}>
       <div className="container">
         <nav className="py-6 flex justify-between items-center gap-4">
           <Link to='/'>
