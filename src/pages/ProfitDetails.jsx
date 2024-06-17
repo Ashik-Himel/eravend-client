@@ -1,7 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import { useSearchParams } from "react-router-dom";
 import Details from "../components/profit-details/Details";
-// import Chart from "../components/profit-details/Chart";
+import Chart from "../components/profit-details/Chart";
 import AnnualGrowth from "../components/profit-details/AnnualGrowth";
 import InvestNow from "../components/profit-details/InvestNow";
 
@@ -26,7 +26,7 @@ export default function ProfitDetails() {
 
       <h2 className="text-3xl md:text-5xl font-medium mb-8 text-center mt-12">Gewinndetails</h2>
       <Details amount={amount} frequencies={frequencies} frequency={frequency} rate={rate} roi={roi} monthlyPayable={monthlyPayable} />
-      {/* <Chart monthlyPayable={monthlyPayable} /> */}
+      <Chart monthlyPayable={monthlyPayable} />
       <AnnualGrowth amount={amount} monthlyPayable={monthlyPayable} />
       <InvestNow />
     </main>

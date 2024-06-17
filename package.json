@@ -1,7 +1,7 @@
 {
   "name": "eravend",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite --host",
@@ -10,12 +10,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@canvasjs/react-charts": "^1.0.2",
     "@tanstack/react-query": "^5.45.0",
     "@tanstack/react-query-devtools": "^5.45.0",
+    "aos": "^2.3.4",
     "axios": "^1.7.2",
+    "chart.js": "^4.4.3",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
+    "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.2.0",
     "react-helmet-async": "^2.0.5",
     "react-icons": "^5.2.1",
