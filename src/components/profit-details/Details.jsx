@@ -7,7 +7,7 @@ export default function Details({amount, frequencies, frequency, rate, roi, mont
   const urlAmount = searchParams.get('amount');
 
   return (
-    <section className={`${pathname.startsWith('/invest') ? 'mt-12' : ''} ${pathname.startsWith('/invest') && urlAmount ? 'block' : 'hidden'}`}>
+    <section className={`${pathname.startsWith('/invest') ? 'mt-12' : ''} ${ urlAmount ? 'block' : 'hidden'}`}>
       <div className="container">
         <div className="bg-bg-color p-6 rounded-lg text-xl leading-[1.8]">
           <h3 className="text-3xl font-medium mb-4">Investment Ergebnisse</h3>
