@@ -20,11 +20,13 @@ export default function Footer() {
               </div>
             </div>
             <div className="w-full md:w-2/5">
-              <div className="flex flex-col items-start w-[130px] md:mx-auto">
+              <div className="w-[140px] md:mx-auto">
                 <h4 className="text-2xl font-medium mb-2">Direktlinks</h4>
-                <Link to='/' className="text-primary font-medium">Heim</Link>
-                <Link to="/invest" className="text-primary font-medium">Investieren</Link>
-                <Link to="/imprint" className="text-primary font-medium">Impressum</Link>
+                <div className="flex flex-col items-start">
+                  <Link to='/' className="text-primary font-medium">Heim</Link>
+                  <Link to="/invest" className="text-primary font-medium">Investieren</Link>
+                  <Link to="/imprint" className="text-primary font-medium">Impressum</Link>
+                </div>
               </div>
             </div>
           </div>

@@ -9,6 +9,7 @@ import {
   Legend,
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
+import { useLocation, useSearchParams } from "react-router-dom";
 
 ChartJS.register(
   CategoryScale,
@@ -20,6 +21,10 @@ ChartJS.register(
 );
 
 export default function Chart({monthlyPayable}) {
+  const {pathname} = useLocation();
+  const [searchParams] = useSearchParams();
+  const urlAmount = searchParams.get('amount');
+
   const options = {
     responsive: true,
     plugins: {
@@ -28,7 +33,6 @@ export default function Chart({monthlyPayable}) {
       }
     }
   };
-
   const data = {
     labels: ['1 Jahre', '2 Jahre', '3 Jahre', '4 Jahre', '5 Jahre', '6 Jahre', '7 Jahre', '8 Jahre', '9 Jahre', '10 Jahre'],
     datasets: [
@@ -40,7 +44,7 @@ export default function Chart({monthlyPayable}) {
   };
 
   return (
-    <section className="mt-16">
+    <section className={`mt-16 ${pathname.startsWith('/invest') && urlAmount ? 'block' : 'hidden'}`}>
       <div className="container">
         <h3 className="text-3xl font-medium mb-6 break-words">Nettogewinndiagramm:</h3>
         <Bar options={options} data={data} />

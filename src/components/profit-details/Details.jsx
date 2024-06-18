@@ -1,13 +1,20 @@
 import PropTypes from "prop-types";
+import { useLocation, useSearchParams } from "react-router-dom";
 
 export default function Details({amount, frequencies, frequency, rate, roi, monthlyPayable}) {
+  const {pathname} = useLocation();
+  const [searchParams] = useSearchParams();
+  const urlAmount = searchParams.get('amount');
+
   return (
-    <section>
+    <section className={`${pathname.startsWith('/invest') ? 'mt-12' : ''} ${pathname.startsWith('/invest') && urlAmount ? 'block' : 'hidden'}`}>
       <div className="container">
         <div className="bg-bg-color p-6 rounded-lg text-xl leading-[1.8]">
           <h3 className="text-3xl font-medium mb-4">Investment Ergebnisse</h3>
           <span className="block"><span className="font-medium">Investment Betrag:</span> {amount} €</span>
-          <span className="block"><span className="font-medium">Ausschüttungsfrequenz:</span> {frequencies[frequency]}</span>
+          {
+            !pathname.startsWith('/invest') && <span className="block"><span className="font-medium">Ausschüttungsfrequenz:</span> {frequencies[frequency]}</span>
+          }
           <span className="block"><span className="font-medium">ROI:</span> {roi} Monate</span>
           <span className="block"><span className="font-medium">Gewinnbeteiligung:</span> {rate} %</span>
           <span className="block"><span className="font-medium">Verdienst:</span> {monthlyPayable} €</span>

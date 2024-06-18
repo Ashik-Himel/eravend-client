@@ -4,6 +4,8 @@ import Home from "../pages/Home";
 import Invest from "../pages/Invest";
 import Imprint from "../pages/Imprint";
 import ProfitDetails from "../pages/ProfitDetails";
+import PrivacyPolicy from "../pages/PrivacyPolicy";
+import Contract from "../pages/Contract";
 
 export const router = createBrowserRouter([
   {
@@ -23,8 +25,16 @@ export const router = createBrowserRouter([
         element: <Invest />
       },
       {
+        path: '/contract',
+        element: <Contract />
+      },
+      {
         path: '/imprint',
         element: <Imprint />
+      },
+      {
+        path: '/privacy-policy',
+        element: <PrivacyPolicy />
       }
     ]
   }

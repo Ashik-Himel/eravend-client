@@ -10,7 +10,7 @@ export default function JoinSection() {
             <p>Eine Investition in die intelligenten Verkaufsautomaten von Eravend bedeutet eine Investition in eine profitable und nachhaltige Zukunft. Unsere Maschinen sind mehr als nur Spender; Es handelt sich um anspruchsvolle Einzelhandelslösungen, die auf den modernen Verbraucher zugeschnitten sind.</p>
           </div>
           <div>
-            <img src={machine} alt="Machine Bild" className="w-auto max-w-[350px] xl:max-w-[500px] mx-auto md:ml-auto md:mr-0" data-aos="fade-left" />
+            <img src={machine} alt="Machine Bild" className="w-full max-w-[400px] mx-auto md:ml-auto md:mr-0" data-aos="fade-left" />
           </div>
         </div>
       </div>
