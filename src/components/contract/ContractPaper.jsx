@@ -1,14 +1,19 @@
+import { format } from "date-fns";
 import { useSearchParams } from "react-router-dom";
 
 export default function ContractPaper() {
   const [searchParams] = useSearchParams();
   const amount = searchParams.get('amount');
+  const numberOfMachines = searchParams.get('machines');
   const rate = searchParams.get('rate');
   const name = searchParams.get('name');
   const surname = searchParams.get('surname');
   const email = searchParams.get('email');
-  const address = searchParams.get('address');
   const company = searchParams.get('company');
+  const address = searchParams.get('address');
+  const nid = searchParams.get('nid');
+  const idDate = searchParams.get('date');
+  const idAuthority = searchParams.get('authority');
   const b2b = searchParams.get('b2b');
 
   const handleContractSubmit = e => {
@@ -22,15 +27,17 @@ export default function ContractPaper() {
           <p><span className="font-semibold">Gewinnbeteiligungsvertrag</span> zwischen EraVend GmbH & Co. KG Guldenstraße 9 86343 Königsbrunn HRA 21570</p>
           <p>und</p>
           <div>
-            <p><span className="font-medium">Name des Investors:</span> {name} {surname ? surname : null}</p>
-            <p><span className="font-medium">E-Mail:</span> {email}</p>
+            {
+              name && <p><span className="font-medium">Name des Investors:</span> {name} {surname ? surname : null}</p>
+            }
             {
               company && <p><span className="font-medium">Unternehmen:</span> {company}</p>
             }
+            <p><span className="font-medium">E-Mail:</span> {email}</p>
             <p><span className="font-medium">Adresse:</span> {address}</p>
-            <p><span className="font-medium">Ausweisnummer:</span> {`None`}</p>
-            <p><span className="font-medium">Ausstellungsdatum:</span> {`None`}</p>
-            <p><span className="font-medium">Ausstellende Behörde:</span> {`None`}</p>
+            <p><span className="font-medium">Ausweisnummer:</span> {nid}</p>
+            <p><span className="font-medium">Ausstellungsdatum:</span> {format(idDate, "dd MMM, yyyy")}</p>
+            <p><span className="font-medium">Ausstellende Behörde:</span> {idAuthority}</p>
             <p>(im Folgenden &ldquo;Investor&rdquo; genannt)</p>
           </div>
 
@@ -43,7 +50,7 @@ export default function ContractPaper() {
             <p className="font-semibold">§ 1 Gegenstand des Vertrags</p>
             <p>Der Investor beteiligt sich finanziell an einem oder mehreren Automaten (im Folgenden &ldquo;Projekt&rdquo;).</p>
             <p>Die Gewinnbeteiligung bezieht sich ausschließlich auf den mitinvestierten Automaten und nicht auf das Unternehmen selbst.</p>
-            <p><span className="font-medium">Anzahl der Automaten:</span> {`None`}</p>
+            <p><span className="font-medium">Anzahl der Automaten:</span> {numberOfMachines}</p>
             <p><span className="font-medium">Investitionsbetrag:</span> {amount} EUR (maximal 12.000 EUR pro Automat)</p>
             <p><span className="font-medium">Prozentsatz der Gewinnbeteiligung:</span> {rate}%</p>
           </div>
@@ -142,10 +149,12 @@ export default function ContractPaper() {
           </div>
 
           <div className="mt-4">
-            <p className="font-semibold">Bankverbindung und Verwendungszweck:</p>
-            <p><span className="font-medium">Bank:</span> Sparkasse-Schwaben-Bodensee</p>
-            <p><span className="font-medium">IBAN:</span> DE27 7315 0000 1002 8549 49</p>
-            <p><span className="font-medium">Verwendungszweck:</span> {`None`}</p>
+            <div className="border-2 border-dashed border-primary bg-bg-color p-6 inline-block rounded-lg">
+              <p className="font-semibold">Bankverbindung und Verwendungszweck:</p>
+              <p><span className="font-medium">Bank:</span> Sparkasse-Schwaben-Bodensee</p>
+              <p><span className="font-medium">IBAN:</span> DE27 7315 0000 1002 8549 49</p>
+              <p><span className="font-medium">Verwendungszweck:</span> Investor</p>
+            </div>
             <p className="mt-4">Mit der Unterschrift wird bestätigt, die Widerrufserklärung zur Kenntnis genommen zu haben, dass keine finanziellen Schwierigkeiten durch die Investition eintreten und den Allgemeinen Geschäftsbedingungen der EraVend GmbH & Co. KG zugestimmt wird.</p>
             <p>Der Investor muss keine Befüllarbeiten oder Service an den Automaten durchführen. Die gesamte Verwaltung, Befüllung und der Service werden von der EraVend GmbH & Co. KG übernommen.</p>
             <p className="mt-4"><span className="font-medium">Wichtiger Hinweis:</span> Dieses Investitionsangebot richtet sich ausschließlich an gewerbliche Investoren. Private Anleger sind von der Investition ausgeschlossen.</p>
