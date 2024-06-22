@@ -1,7 +1,9 @@
 import { Link, useNavigate } from "react-router-dom";
+import useContextProvider from "../../hooks/useContextProvider";
 
 export default function ReadySection() {
   const navigate = useNavigate();
+  const { readySectionRef } = useContextProvider();
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -11,7 +13,7 @@ export default function ReadySection() {
   }
 
   return (
-    <section className="mt-16 bg-gray-100 py-12 md:py-20">
+    <section className="mt-16 bg-gray-100 py-12 md:py-20" ref={readySectionRef}>
       <div className="container">
         <div className="flex flex-col md:flex-row justify-center items-center gap-10 [&>*]:flex-1">
           <div data-aos="fade-right">

@@ -1,14 +1,14 @@
 import { Helmet } from "react-helmet-async";
-import Information from "../components/contract/Information";
+import ContractPaper from "../components/contract/ContractPaper";
 
 export default function Contract() {
   return (
-    <main>
+    <main className="bg-gray-300">
       <Helmet>
         <title>Contract - Eravend</title>
       </Helmet>
 
-      <Information />
+      <ContractPaper />
     </main>
   );
 }

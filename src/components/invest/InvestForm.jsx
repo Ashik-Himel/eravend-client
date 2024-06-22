@@ -4,11 +4,12 @@ export default function InvestForm() {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const amount = searchParams.get('amount');
+  const rate = parseFloat(((100 / 60000) * amount).toFixed(2));
 
   const handleSubmit = e => {
     e.preventDefault();
 
-    let link = `/contract?amount=${e.target.amount.value}&name=${e.target.name.value}&email=${e.target.email.value}&address=${e.target.address.value}`;
+    let link = `/contract?amount=${e.target.amount.value}&rate=${rate}&name=${e.target.name.value}&email=${e.target.email.value}&address=${e.target.address.value}`;
     if (e.target.surname.value) {
       link += "&surname=" + e.target.surname.value;
     }
@@ -27,7 +28,7 @@ export default function InvestForm() {
       <div className="container">
         <form className="w-full max-w-[700px] mx-auto bg-bg-color px-6 py-10 rounded-lg" onSubmit={handleSubmit}>
           <h4 className="text-3xl font-medium text-center text-primary mb-6">Anlageform</h4>
-          <label className="block font-medium mb-2" htmlFor="amount">Menge</label>
+          <label className="block font-medium mb-2" htmlFor="amount">Betrag (€)</label>
           <input className="input w-full border border-gray-300 mb-4" type="number" min="6000" name="amount" id="amount" placeholder="Geben Sie den Betrag ein" defaultValue={amount} onChange={e => setSearchParams({amount: e.target.value})} required />
 
           <label className="block font-medium mb-2" htmlFor="name">Name</label>

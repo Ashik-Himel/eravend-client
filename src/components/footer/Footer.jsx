@@ -1,7 +1,13 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { FaTiktok, FaInstagram, FaYoutube, FaFacebookF } from "react-icons/fa";
 
 export default function Footer() {
+  const { pathname } = useLocation();
+
+  if (pathname.startsWith('/contract')) {
+    return null;
+  }
+
   return (
     <footer>
       <section className="bg-bg-color py-12">
