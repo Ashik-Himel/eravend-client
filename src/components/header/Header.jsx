@@ -17,7 +17,7 @@ export default function Header() {
 
   if (pathname.startsWith('/contract')) {
     return (
-      <Link to={-1} className="fixed left-6 top-6 bg-white border-2 border-primary w-10 h-10 rounded-full flex justify-center items-center">
+      <Link to={-1} className="fixed left-6 top-4 bg-white border-2 border-primary w-10 h-10 rounded-full flex justify-center items-center">
         <FaArrowLeft />
       </Link>
     );

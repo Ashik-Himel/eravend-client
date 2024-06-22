@@ -21,7 +21,7 @@ export default function ContractPaper() {
   }
   
   return (
-    <section className="mt-20 mb-12">
+    <section className="mt-16 mb-12">
       <div className="container">
         <div className="bg-white shadow-md rounded p-6">
           <p><span className="font-semibold">Gewinnbeteiligungsvertrag</span> zwischen EraVend GmbH & Co. KG Guldenstraße 9 86343 Königsbrunn HRA 21570</p>

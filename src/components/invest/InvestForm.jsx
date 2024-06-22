@@ -32,7 +32,16 @@ export default function InvestForm() {
     if (!name && !company) {
       Swal.fire({
         title: "Fehlende Informationen",
-        text: "Sie sollten zumindest Ihren Namen bzw. Firmennamen angeben.!",
+        text: "Sie sollten zumindest Ihren Namen bzw. Firmennamen angeben!",
+        icon: "error"
+      });
+      return;
+    }
+
+    if (numberOfMachines < Math.ceil(finalAmount / 12000)) {
+      Swal.fire({
+        title: "Fehler",
+        text: "Man muss die Zahl der Maschinen erhöhen!",
         icon: "error"
       });
       return;
