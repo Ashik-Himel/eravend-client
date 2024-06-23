@@ -25,7 +25,7 @@ export default function Details({amount, frequencies, frequency, rate, roi, mont
 }
 
 Details.propTypes = {
-  amount: PropTypes.number,
+  amount: PropTypes.string,
   frequencies: PropTypes.object,
   frequency: PropTypes.string,
   rate: PropTypes.number,

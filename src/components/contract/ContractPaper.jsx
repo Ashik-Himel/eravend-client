@@ -1,7 +1,9 @@
 import { format } from "date-fns";
 import { useSearchParams } from "react-router-dom";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 export default function ContractPaper() {
+  const axiosPublic = useAxiosPublic();
   const [searchParams] = useSearchParams();
   const amount = searchParams.get('amount');
   const numberOfMachines = searchParams.get('machines');
@@ -14,10 +16,21 @@ export default function ContractPaper() {
   const nid = searchParams.get('nid');
   const idDate = searchParams.get('date');
   const idAuthority = searchParams.get('authority');
-  const b2b = searchParams.get('b2b');
+  // const b2b = searchParams.get('b2b');
 
-  const handleContractSubmit = e => {
-    e.preventDefault();
+  const generatePDF = () => {
+    let url = window.location.href;
+    url = url.replace('contract', 'contract-pdf');
+
+    axiosPublic.post('/contract', {url})
+      .then(res => {
+        if (res.data?.url) {
+          window.location.href = res.data.url;
+        } else {
+          console.log("Error Occurred!");
+        }
+      })
+      .catch(error => console.log(error));
   }
   
   return (
@@ -158,24 +171,17 @@ export default function ContractPaper() {
             <p className="mt-4">Mit der Unterschrift wird bestätigt, die Widerrufserklärung zur Kenntnis genommen zu haben, dass keine finanziellen Schwierigkeiten durch die Investition eintreten und den Allgemeinen Geschäftsbedingungen der EraVend GmbH & Co. KG zugestimmt wird.</p>
             <p>Der Investor muss keine Befüllarbeiten oder Service an den Automaten durchführen. Die gesamte Verwaltung, Befüllung und der Service werden von der EraVend GmbH & Co. KG übernommen.</p>
             <p className="mt-4"><span className="font-medium">Wichtiger Hinweis:</span> Dieses Investitionsangebot richtet sich ausschließlich an gewerbliche Investoren. Private Anleger sind von der Investition ausgeschlossen.</p>
-            <p>Augsburg, den 27.05.2024</p>
+            <p>Augsburg, den {format(idDate, "dd MMM, yyyy")}</p>
           </div>
 
-          <form className="mt-10" onSubmit={handleContractSubmit}>
-            <div className="flex justify-start items-center gap-4">
-              <input type="checkbox" name="agree" id="agree" required />
-              <label htmlFor="agree" className="block cursor-pointer select-none">Ich habe das gesamte Vertragsdokument gelesen und verstanden und stimme diesem Vertrag zu.</label>
-            </div>
+          <div className="mt-10 flex justify-start items-center gap-2">
+            <span className="font-semibold">Unterschrift des {name ? name : company}:</span>
+            <span>____________________</span>
+          </div>
 
-            <div className="mt-4 flex flex-col gap-2">
-              <label htmlFor="investor-signature" className="font-medium">Unterschrift des Investors</label>
-              <input type="file" name="investor-signature" id="investor-signature" accept="image/*" required />
-            </div>
-
-            <div className="mt-6 text-center">
-              <button type="submit" className="btn btn-primary">Jetzt investieren</button>
-            </div>
-          </form>
+          <div className="mt-8 text-center">
+            <button type="button" className="btn btn-primary" onClick={generatePDF}>Herunterladen</button>
+          </div>
         </div>
       </div>
     </section>

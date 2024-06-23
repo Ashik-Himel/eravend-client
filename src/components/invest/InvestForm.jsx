@@ -100,7 +100,7 @@ export default function InvestForm() {
           <div className="flex flex-col md:flex-row gap-x-6 gap-y-4 mb-4 [&>*]:flex-1">
             <div>
               <label className="block font-medium mb-2" htmlFor="nid">Nationale ID-Nummer</label>
-              <input className="input w-full border border-gray-300" type="number" name="nid" id="nid" placeholder="Geben Sie Ihre Personalausweisnummer ein" required />
+              <input className="input w-full border border-gray-300" type="text" name="nid" id="nid" placeholder="Geben Sie Ihre Personalausweisnummer ein" required />
             </div>
             <div>
               <label className="block font-medium mb-2" htmlFor="idDate">Ausstellungsdatum</label>

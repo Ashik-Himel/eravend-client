@@ -6,6 +6,7 @@ import Imprint from "../pages/Imprint";
 import ProfitDetails from "../pages/ProfitDetails";
 import PrivacyPolicy from "../pages/PrivacyPolicy";
 import Contract from "../pages/Contract";
+import ContractPDF from "../pages/ContractPDF";
 
 export const router = createBrowserRouter([
   {
@@ -37,5 +38,9 @@ export const router = createBrowserRouter([
         element: <PrivacyPolicy />
       }
     ]
+  },
+  {
+    path: '/contract-pdf',
+    element: <ContractPDF />
   }
 ])
