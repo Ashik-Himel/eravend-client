@@ -22,7 +22,7 @@ export default function ContractPaper() {
     let url = window.location.href;
     url = url.replace('contract', 'contract-pdf');
 
-    axiosPublic.post('/api/contract', {url})
+    axiosPublic.post('/contract', {url})
       .then(res => {
         if (res.data?.url) {
           window.location.href = res.data.url;
