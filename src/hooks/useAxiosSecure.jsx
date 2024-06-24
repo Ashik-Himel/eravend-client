@@ -1,20 +1,19 @@
-import axios from "axios";
-import useUserContext from "./useUserContext";
+// import axios from "axios";
+// import useUserContext from "./useUserContext";
 
-const useAxiosSecure = () => {
-  const {user} = useUserContext();
+// const useAxiosSecure = () => {
+//   const {user} = useUserContext();
 
-  const axiosSecure = axios.create({
-    // baseURL: 'https://eravend-server.akashmedia.net',
-    // baseURL: 'https://eravend-server-2.akashmedia.net',
-    baseURL: 'http://localhost:5000',
-    withCredentials: true,
-    headers: {
-      Authorization: user?.email
-    }
-  })
+//   const axiosSecure = axios.create({
+//     baseURL: 'https://eravend-server.akashmedia.net',
+//     // baseURL: 'http://localhost:5000',
+//     withCredentials: true,
+//     headers: {
+//       Authorization: user?.email
+//     }
+//   })
 
-  return axiosSecure;
-};
+//   return axiosSecure;
+// };
 
-export default useAxiosSecure;
+// export default useAxiosSecure;
