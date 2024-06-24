@@ -22,7 +22,7 @@ export default function ContractPaper() {
     let url = window.location.href;
     url = url.replace('contract', 'contract-pdf');
 
-    axiosPublic.post('/contract', {url})
+    axiosPublic.post('/api/contract', {url})
       .then(res => {
         if (res.data?.url) {
           window.location.href = res.data.url;
@@ -166,7 +166,7 @@ export default function ContractPaper() {
               <p className="font-semibold">Bankverbindung und Verwendungszweck:</p>
               <p><span className="font-medium">Bank:</span> Sparkasse-Schwaben-Bodensee</p>
               <p><span className="font-medium">IBAN:</span> DE27 7315 0000 1002 8549 49</p>
-              <p><span className="font-medium">Verwendungszweck:</span> Investor</p>
+              <p><span className="font-medium">Verwendungszweck:</span> {name ? name + (surname ? " " + surname : null) : company}</p>
             </div>
             <p className="mt-4">Mit der Unterschrift wird bestätigt, die Widerrufserklärung zur Kenntnis genommen zu haben, dass keine finanziellen Schwierigkeiten durch die Investition eintreten und den Allgemeinen Geschäftsbedingungen der EraVend GmbH & Co. KG zugestimmt wird.</p>
             <p>Der Investor muss keine Befüllarbeiten oder Service an den Automaten durchführen. Die gesamte Verwaltung, Befüllung und der Service werden von der EraVend GmbH & Co. KG übernommen.</p>
@@ -175,7 +175,7 @@ export default function ContractPaper() {
           </div>
 
           <div className="mt-10 flex justify-start items-center gap-2">
-            <span className="font-semibold">Unterschrift des {name ? name : company}:</span>
+            <span className="font-semibold">Unterschrift des {name ? name + (surname ? " " + surname : null) : company}:</span>
             <span>____________________</span>
           </div>
 
