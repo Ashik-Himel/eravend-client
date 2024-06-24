@@ -1,12 +1,15 @@
 import { FaArrowLeft } from "react-icons/fa";
-import { Link, useLocation } from "react-router-dom";
+import { FaXmark, FaBars  } from "react-icons/fa6";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import machine from "../../assets/machine.png";
 import useContextProvider from "../../hooks/useContextProvider";
+import { useState } from "react";
 
 export default function Header() {
   const { pathname } = useLocation();
   const { readySectionRef } = useContextProvider();
+  const [drawerShow, setDrawerShow] = useState(false);
 
   const handleButtonClick = () => {
     window.scrollTo({
@@ -28,9 +31,16 @@ export default function Header() {
       <div className="container">
         <nav className="py-6 md:py-4 flex justify-between items-center gap-4">
           <Link to='/'>
-            <img src={logo} alt="Logo" className="w-full max-w-[250px]" />
+            <img src={logo} alt="Logo" className="w-full max-w-[150px] lg:max-w-[250px]" />
           </Link>
-          <Link to='/invest' className="btn btn-primary">Investieren</Link>
+
+          <div className={`flex justify-center items-center gap-x-4 lg:gap-x-6 gap-y-6 font-medium bg-white md:bg-transparent fixed top-0 left-0 right-0 overflow-hidden md:static flex-col md:flex-row transition-[bottom] duration-300 z-50 ${drawerShow ? "bottom-0" : "bottom-full"}`}>
+            <NavLink to='/submit-contract' className={({isActive}) => isActive ? "text-primary text-xl md:text-[18px]" : "text-xl md:text-[18px]"} onClick={() => setDrawerShow(false)}>Vertrag Einreichen</NavLink>
+            <NavLink to='/login' className={({isActive}) => isActive ? "text-primary text-xl md:text-[18px]" : "text-xl md:text-[18px]"} onClick={() => setDrawerShow(false)}>Anmeldung</NavLink>
+            <NavLink to='/invest' className="btn btn-primary max-h-[42px]" onClick={() => setDrawerShow(false)}>Investieren</NavLink>
+            <FaXmark className="md:hidden text-3xl absolute top-6 right-6 cursor-pointer select-none" onClick={() => setDrawerShow(false)} />
+          </div>
+          <FaBars className="md:hidden text-3xl cursor-pointer select-none" onClick={() => setDrawerShow(true)} />
         </nav>
 
         <section className={`py-8 md:py-12 2xl:py-20 flex flex-col md:flex-row justify-between items-center gap-8 ${pathname === "/" ? "flex" : "hidden"}`}>
