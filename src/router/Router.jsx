@@ -4,7 +4,6 @@ import Home from "../pages/Home";
 import Invest from "../pages/Invest";
 import Imprint from "../pages/Imprint";
 import ProfitDetails from "../pages/ProfitDetails";
-import PrivacyPolicy from "../pages/PrivacyPolicy";
 import Contract from "../pages/Contract";
 import ContractPDF from "../pages/ContractPDF";
 import SubmitContract from "../pages/SubmitContract";
@@ -34,10 +33,6 @@ export const router = createBrowserRouter([
       {
         path: '/imprint',
         element: <Imprint />
-      },
-      {
-        path: '/privacy-policy',
-        element: <PrivacyPolicy />
       },
       {
         path: '/submit-contract',

@@ -22,7 +22,20 @@ export default function ContractPaper() {
     let url = window.location.href;
     url = url.replace('contract', 'contract-pdf');
 
-    axiosPublic.post('/api/contract', {url})
+    const info = {};
+    if (name) info.name = name;
+    if (surname) info.surname = surname;
+    info.email = email;
+    if (company) info.company = company;
+    info.address = address;
+    info.amount = amount;
+    info.numberOfMachines = numberOfMachines;
+    info.nid = nid;
+    info.idDate = idDate;
+    info.idAuthority = idAuthority;
+    info.url = url;
+
+    axiosPublic.post('/api/contract', info)
       .then(res => {
         if (res.data?.url) {
           window.location.href = res.data.url;
@@ -171,10 +184,10 @@ export default function ContractPaper() {
             <p className="mt-4">Mit der Unterschrift wird bestätigt, die Widerrufserklärung zur Kenntnis genommen zu haben, dass keine finanziellen Schwierigkeiten durch die Investition eintreten und den Allgemeinen Geschäftsbedingungen der EraVend GmbH & Co. KG zugestimmt wird.</p>
             <p>Der Investor muss keine Befüllarbeiten oder Service an den Automaten durchführen. Die gesamte Verwaltung, Befüllung und der Service werden von der EraVend GmbH & Co. KG übernommen.</p>
             <p className="mt-4"><span className="font-medium">Wichtiger Hinweis:</span> Dieses Investitionsangebot richtet sich ausschließlich an gewerbliche Investoren. Private Anleger sind von der Investition ausgeschlossen.</p>
-            <p>Augsburg, den {format(idDate, "dd MMM, yyyy")}</p>
+            <p>{idAuthority}, {format(idDate, "dd MMM, yyyy")}</p>
           </div>
 
-          <div className="mt-10 flex justify-start items-center gap-2">
+          <div className="mt-10 flex flex-wrap justify-start items-center gap-2">
             <span className="font-semibold">Unterschrift des {name ? name + (surname ? " " + surname : null) : company}:</span>
             <span>____________________</span>
           </div>

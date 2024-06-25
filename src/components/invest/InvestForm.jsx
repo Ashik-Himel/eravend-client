@@ -118,7 +118,7 @@ export default function InvestForm() {
 
           <div className="flex justify-start items-center gap-2 mb-4">
             <input type="checkbox" name="policy" id="policy" required />
-            <label htmlFor="policy" className="cursor-pointer select-none">Ich stimme der <Link to="/privacy-policy" className="font-medium text-primary underline">Datenschutzrichtlinie</Link> von Eravend zu</label>
+            <label htmlFor="policy" className="cursor-pointer select-none">Ich stimme der <Link to="/imprint" className="font-medium text-primary underline">Datenschutzrichtlinie</Link> von Eravend zu</label>
           </div>
 
           <button type="submit" className="btn btn-primary">Fortfahren</button>
