@@ -5,9 +5,8 @@ const useAxiosSecure = () => {
   const {user} = useUserContext();
 
   const axiosSecure = axios.create({
-    // baseURL: 'https://eravend-server.vercel.app',
-    // baseURL: 'https://eravend-server.akashmedia.net',
-    baseURL: 'http://localhost:5000',
+    baseURL: 'https://eravend-server.vercel.app',
+    // baseURL: 'http://localhost:5000',
     withCredentials: true,
     headers: {
       Authorization: user?.email

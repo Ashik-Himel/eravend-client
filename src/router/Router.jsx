@@ -15,6 +15,8 @@ import DashboardHome from "../pages/dashboard/DashboardHome";
 import AdminRoutes from "../control-routes/AdminRoutes";
 import AdminLayout from "../layout/AdminLayout";
 import AdminHome from "../pages/admin/AdminHome";
+import ContractDetails from "../pages/admin/ContractDetails";
+import DashboardContractDetails from "../pages/dashboard/DashboardContractDetails";
 
 export const router = createBrowserRouter([
   {
@@ -58,6 +60,10 @@ export const router = createBrowserRouter([
       {
         path: '/dashboard',
         element: <DashboardHome />
+      },
+      {
+        path: '/dashboard/contract/:id',
+        element: <DashboardContractDetails />
       }
     ]
   },
@@ -68,6 +74,10 @@ export const router = createBrowserRouter([
       {
         path: '/admin',
         element: <AdminHome />
+      },
+      {
+        path: '/admin/contracts/:id',
+        element: <ContractDetails />
       }
     ]
   },

@@ -9,7 +9,7 @@ import {
   Legend,
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
-import { useSearchParams } from "react-router-dom";
+import { useLocation, useSearchParams } from "react-router-dom";
 
 ChartJS.register(
   CategoryScale,
@@ -21,6 +21,7 @@ ChartJS.register(
 );
 
 export default function Chart({monthlyPayable}) {
+  const {pathname} = useLocation();
   const [searchParams] = useSearchParams();
   const urlAmount = searchParams.get('amount');
 
@@ -43,7 +44,7 @@ export default function Chart({monthlyPayable}) {
   };
 
   return (
-    <section className={`mt-16 ${urlAmount ? 'block' : 'hidden'}`}>
+    <section className={`mt-16 ${urlAmount || pathname.startsWith('/dashboard') ? 'block' : 'hidden'}`}>
       <div className="container">
         <h3 className="text-3xl font-medium mb-6 break-words">Nettogewinndiagramm:</h3>
         <Bar options={options} data={data} />

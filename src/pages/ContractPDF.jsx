@@ -3,6 +3,7 @@ import { useSearchParams } from "react-router-dom";
 
 export default function ContractPDF() {
   const [searchParams] = useSearchParams();
+  const id = searchParams.get('id');
   const amount = searchParams.get('amount');
   const numberOfMachines = searchParams.get('machines');
   const rate = searchParams.get('rate');
@@ -18,7 +19,8 @@ export default function ContractPDF() {
   
   return (
     <div>
-      <p><span className="font-semibold">Gewinnbeteiligungsvertrag</span> zwischen EraVend GmbH & Co. KG Guldenstraße 9 86343 Königsbrunn HRA 21570</p>
+      <p><span className="font-semibold">Vertrags-ID:</span> {id}</p>
+      <p className="mt-4"><span className="font-semibold">Gewinnbeteiligungsvertrag</span> zwischen EraVend GmbH & Co. KG Guldenstraße 9 86343 Königsbrunn HRA 21570</p>
       <p>und</p>
       <div>
         {
@@ -147,7 +149,7 @@ export default function ContractPDF() {
           <p className="font-semibold">Bankverbindung und Verwendungszweck:</p>
           <p><span className="font-medium">Bank:</span> Sparkasse-Schwaben-Bodensee</p>
           <p><span className="font-medium">IBAN:</span> DE27 7315 0000 1002 8549 49</p>
-          <p><span className="font-medium">Verwendungszweck:</span> Investor</p>
+          <p><span className="font-medium">Verwendungszweck:</span> {id}</p>
         </div>
         <p className="mt-4">Mit der Unterschrift wird bestätigt, die Widerrufserklärung zur Kenntnis genommen zu haben, dass keine finanziellen Schwierigkeiten durch die Investition eintreten und den Allgemeinen Geschäftsbedingungen der EraVend GmbH & Co. KG zugestimmt wird.</p>
         <p>Der Investor muss keine Befüllarbeiten oder Service an den Automaten durchführen. Die gesamte Verwaltung, Befüllung und der Service werden von der EraVend GmbH & Co. KG übernommen.</p>
@@ -157,6 +159,11 @@ export default function ContractPDF() {
 
       <div className="mt-10 flex flex-wrap justify-start items-center gap-2">
         <span className="font-semibold">Unterschrift des {name ? name : company}:</span>
+        <span>____________________</span>
+      </div>
+
+      <div className="mt-20 flex flex-wrap justify-start items-center gap-2">
+        <span className="font-semibold">Unterschrift des Eravend GmbH & Co. KG:</span>
         <span>____________________</span>
       </div>
     </div>

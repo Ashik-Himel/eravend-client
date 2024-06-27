@@ -7,8 +7,13 @@ import { useNavigate } from "react-router-dom";
 export default function SubmitContract() {
   const axiosPublic = useAxiosPublic();
   const navigate = useNavigate();
+  const [contractId, setContractId] = useState('');
   const [email, setEmail] = useState('');
   const [file, setFile] = useState(null);
+
+  const handleIdChange = (e) => {
+    setContractId(e.target.value);
+  }
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -21,17 +26,8 @@ export default function SubmitContract() {
   const handleContractSubmit = e => {
     e.preventDefault();
 
-    Swal.fire({
-      title: "Erfolgreich Eingereicht!",
-      text: "Das Vertragsdokument wurde erfolgreich übermittelt. Überprüfen Sie Ihre E-Mail, um die Informationen zu erhalten.",
-      icon: "success",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        navigate('/');
-      }
-    });
-
     const formData = new FormData();
+    formData.append('id', contractId);
     formData.append('email', email);
     formData.append('file', file);
 
@@ -41,12 +37,39 @@ export default function SubmitContract() {
       }
     })
     .then(res => {
-      console.log(res.data);
+      if (res.data?.status === "unmatched") {
+        Swal.fire({
+          title: "Fehler",
+          text: "Zu diesen Angaben wurde kein Vertrag gefunden.",
+          icon: "error",
+        })
+      }
+      else if (res.data?.status === "wrong id") {
+        Swal.fire({
+          title: "Fehler",
+          text: "Sie haben eine falsche ID eingegeben.",
+          icon: "error",
+        })
+      }
+      else {
+        Swal.fire({
+          title: "Erfolgreich Eingereicht!",
+          text: "Das Vertragsdokument wurde erfolgreich übermittelt. Überprüfen Sie Ihre E-Mail, um die Informationen zu erhalten.",
+          icon: "success",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            navigate('/');
+          }
+        });
+
+        console.log(res.data);
+      }
     })
     .catch(error => {
       console.log(error);
     })
   }
+
   return (
     <main>
       <Helmet>
@@ -57,6 +80,11 @@ export default function SubmitContract() {
         <div className="container">
           <form onSubmit={handleContractSubmit}>
             <h2 className="text-3xl font-medium text-primary text-center mb-6">Vertragspapier Einreichen</h2>
+
+            <div className="w-full max-w-[600px] mx-auto">
+              <label className="block font-medium mb-2" htmlFor="contractId">Vertrags-ID</label>
+              <input className="input w-full border border-gray-300 mb-4" type="text" name="contractId" id="contractId" placeholder="Vertragsnummer (siehe Vertragsdokument)" value={contractId} onChange={handleIdChange} required />
+            </div>
 
             <div className="w-full max-w-[600px] mx-auto">
               <label className="block font-medium mb-2" htmlFor="email">E-Mail</label>
