@@ -8,6 +8,13 @@ import Contract from "../pages/Contract";
 import ContractPDF from "../pages/ContractPDF";
 import SubmitContract from "../pages/SubmitContract";
 import Login from "../pages/Login";
+import UserRoutesAlt from "../control-routes/UserRoutesAlt";
+import DashboardLayout from "../layout/DashboardLayout";
+import UserRoutes from "../control-routes/UserRoutes";
+import DashboardHome from "../pages/dashboard/DashboardHome";
+import AdminRoutes from "../control-routes/AdminRoutes";
+import AdminLayout from "../layout/AdminLayout";
+import AdminHome from "../pages/admin/AdminHome";
 
 export const router = createBrowserRouter([
   {
@@ -40,7 +47,27 @@ export const router = createBrowserRouter([
       },
       {
         path: '/login',
-        element: <Login />
+        element: <UserRoutesAlt><Login /></UserRoutesAlt>
+      }
+    ]
+  },
+  {
+    path: '/dashboard',
+    element: <UserRoutes><DashboardLayout /></UserRoutes>,
+    children: [
+      {
+        path: '/dashboard',
+        element: <DashboardHome />
+      }
+    ]
+  },
+  {
+    path: '/admin',
+    element: <AdminRoutes><AdminLayout /></AdminRoutes>,
+    children: [
+      {
+        path: '/admin',
+        element: <AdminHome />
       }
     ]
   },

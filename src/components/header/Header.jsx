@@ -8,7 +8,7 @@ import { useState } from "react";
 
 export default function Header() {
   const { pathname } = useLocation();
-  const { readySectionRef } = useContextProvider();
+  const { readySectionRef, user, userRole, userLoaded } = useContextProvider();
   const [drawerShow, setDrawerShow] = useState(false);
 
   const handleButtonClick = () => {
@@ -36,7 +36,9 @@ export default function Header() {
 
           <div className={`flex justify-center items-center gap-x-4 lg:gap-x-6 gap-y-6 font-medium bg-white md:bg-transparent fixed top-0 left-0 right-0 overflow-hidden md:static flex-col md:flex-row transition-[bottom] duration-300 z-50 ${drawerShow ? "bottom-0" : "bottom-full"}`}>
             <NavLink to='/submit-contract' className={({isActive}) => isActive ? "text-primary text-xl md:text-[18px]" : "text-xl md:text-[18px]"} onClick={() => setDrawerShow(false)}>Vertrag Einreichen</NavLink>
-            <NavLink to='/login' className={({isActive}) => isActive ? "text-primary text-xl md:text-[18px]" : "text-xl md:text-[18px]"} onClick={() => setDrawerShow(false)}>Anmeldung</NavLink>
+            {
+              userLoaded ? user ? userRole === "admin" ? <NavLink to='/admin' className={({isActive}) => isActive ? "text-primary text-xl md:text-[18px]" : "text-xl md:text-[18px]"} onClick={() => setDrawerShow(false)}>Armaturenbrett</NavLink> : <NavLink to='/dashboard' className={({isActive}) => isActive ? "text-primary text-xl md:text-[18px]" : "text-xl md:text-[18px]"} onClick={() => setDrawerShow(false)}>Armaturenbrett</NavLink> : <NavLink to='/login' className={({isActive}) => isActive ? "text-primary text-xl md:text-[18px]" : "text-xl md:text-[18px]"} onClick={() => setDrawerShow(false)}>Anmeldung</NavLink> : null
+            }
             <NavLink to='/invest' className="btn btn-primary max-h-[42px]" onClick={() => setDrawerShow(false)}>Investieren</NavLink>
             <FaXmark className="md:hidden text-3xl absolute top-6 right-6 cursor-pointer select-none" onClick={() => setDrawerShow(false)} />
           </div>

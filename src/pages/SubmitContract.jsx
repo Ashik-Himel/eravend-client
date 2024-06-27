@@ -34,7 +34,6 @@ export default function SubmitContract() {
     const formData = new FormData();
     formData.append('email', email);
     formData.append('file', file);
-    console.log(formData);
 
     axiosPublic.put("/api/submit-contract", formData, {
       headers: {

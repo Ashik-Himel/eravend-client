@@ -4,6 +4,7 @@ import Footer from "../components/footer/Footer";
 import { useEffect } from "react";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { Toaster } from "react-hot-toast";
 AOS.init({
   duration: 1000,
   offset: 200
@@ -20,6 +21,10 @@ export default function Layout() {
       <Header />
       <Outlet />
       <Footer />
+      <Toaster
+        position="top-center"
+        reverseOrder={false}
+      />
     </div>
   );
 }
