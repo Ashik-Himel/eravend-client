@@ -1,9 +1,12 @@
 import { format } from "date-fns";
 import { useSearchParams } from "react-router-dom";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
+import { useState } from "react";
+import Swal from "sweetalert2";
 
 export default function ContractPaper() {
   const axiosPublic = useAxiosPublic();
+  const [btnLoading, setBtnLoading] = useState(false);
   const [searchParams] = useSearchParams();
   const amount = searchParams.get('amount');
   const numberOfMachines = searchParams.get('machines');
@@ -19,6 +22,7 @@ export default function ContractPaper() {
   // const b2b = searchParams.get('b2b');
 
   const generatePDF = () => {
+    setBtnLoading(true);
     axiosPublic(`/api/contract-id?email=${email}`)
       .then(res => {
         let url = window.location.href;
@@ -42,12 +46,33 @@ export default function ContractPaper() {
         axiosPublic.post('/api/contract', info)
           .then(res => {
             if (res.data?.url) {
-              window.location.href = res.data.url;
+              const link = document.createElement('a');
+              link.href = res.data.url;
+              link.setAttribute("target", "_blank");
+              link.setAttribute('download', `contract-paper${res.data.url.substring(res.data.url.lastIndexOf("."))}`);
+              document.body.appendChild(link);
+              link.click();
+              document.body.removeChild(link);
+              setBtnLoading(false);
             } else {
+              Swal.fire({
+                title: "Fehler",
+                text: "Download des Vertragspapiers fehlgeschlagen!",
+                icon: "error"
+              })
               console.log("Error Occurred!");
+              setBtnLoading(false);
             }
           })
-          .catch(error => console.log(error));
+          .catch(error => {
+            Swal.fire({
+              title: "Fehler",
+              text: "Ein Fehler ist aufgetreten!",
+              icon: "error"
+            })
+            console.log(error);
+            setBtnLoading(false);
+          });
       })
   }
   
@@ -203,7 +228,11 @@ export default function ContractPaper() {
           </div>
 
           <div className="mt-8 text-center">
-            <button type="button" className="btn btn-primary" onClick={generatePDF}>Herunterladen</button>
+            <button type="button" className="btn btn-primary" onClick={generatePDF} disabled={btnLoading}>
+              {
+                btnLoading ? <span className="loading loading-spinner loading-sm"></span> : "Herunterladen"
+              }
+            </button>
           </div>
         </div>
       </div>

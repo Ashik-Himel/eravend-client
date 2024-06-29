@@ -30,14 +30,23 @@ export default function ContractDetails() {
 
   const handleDownload = () => {
     if (contract?.status === "pending") {
-      window.location.href = contract?.contract;
+      const link = document.createElement('a');
+      link.href = contract?.contract;
+      link.setAttribute("target", "_blank");
+      link.setAttribute('download', `contract-paper${contract?.contract.substring(contract?.contract.lastIndexOf("."))}`);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
     }
-    else if (contract?.status === "submitted") {
-      window.location.href = contract?.submitted;
+    else {
+      const link = document.createElement('a');
+      link.href = contract?.[contract?.status];
+      link.setAttribute("target", "_blank");
+      link.setAttribute('download', `contract-paper${contract?.[contract?.status].substring(contract?.[contract?.status].lastIndexOf("."))}`);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
     }
-    else if (contract?.status === "verified") {
-      window.location.href = contract?.verified;
-    } 
   }
 
   const handleFileChange = (e) => {

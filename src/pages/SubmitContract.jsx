@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 export default function SubmitContract() {
   const axiosPublic = useAxiosPublic();
   const navigate = useNavigate();
+  const [btnLoading, setBtnLoading] = useState(false);
   const [contractId, setContractId] = useState('');
   const [email, setEmail] = useState('');
   const [file, setFile] = useState(null);
@@ -24,6 +25,7 @@ export default function SubmitContract() {
   };
   
   const handleContractSubmit = e => {
+    setBtnLoading(true);
     e.preventDefault();
 
     const formData = new FormData();
@@ -43,6 +45,7 @@ export default function SubmitContract() {
           text: "Zu diesen Angaben wurde kein Vertrag gefunden.",
           icon: "error",
         })
+        setBtnLoading(false);
       }
       else if (res.data?.status === "wrong id") {
         Swal.fire({
@@ -50,6 +53,7 @@ export default function SubmitContract() {
           text: "Sie haben eine falsche ID eingegeben.",
           icon: "error",
         })
+        setBtnLoading(false);
       }
       else {
         Swal.fire({
@@ -61,12 +65,13 @@ export default function SubmitContract() {
             navigate('/');
           }
         });
-
+        setBtnLoading(false);
         console.log(res.data);
       }
     })
     .catch(error => {
       console.log(error);
+      setBtnLoading(false);
     })
   }
 
@@ -97,7 +102,11 @@ export default function SubmitContract() {
             </div>
 
             <div className="text-center">
-              <button type="submit" className="btn btn-primary">Einreichen</button>
+              <button type="submit" className="btn btn-primary" disabled={btnLoading}>
+                {
+                  btnLoading ? <span className="loading loading-spinner loading-sm"></span> : "Einreichen"
+                }
+              </button>
             </div>
           </form>
         </div>
