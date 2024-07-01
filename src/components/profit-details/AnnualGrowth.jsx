@@ -26,7 +26,7 @@ export default function AnnualGrowth({amount, monthlyPayable}) {
 }
 
 function CalculateGrowth({amount, monthlyPayable, year}) {
-  const growth = (((((monthlyPayable * 12 * year) / amount) ** (1 / year)) - 1) * 100).toFixed(2);
+  const growth = (((monthlyPayable * 12 * year) / amount) * 100).toFixed(2);
 
   return (
     <tr>

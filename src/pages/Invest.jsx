@@ -8,8 +8,8 @@ import InvestForm from "../components/invest/InvestForm";
 export default function Invest() {
   const [searchParams] = useSearchParams();
   const amount = searchParams.get('amount');
-  const rate = parseFloat(((100 / 60000) * amount).toFixed(2));
-  const monthlyPayable = parseFloat(((8985.6 / 100) * (rate - 3.28)).toFixed(2));
+  const rate = parseFloat((amount / 1000).toFixed(2));
+  const monthlyPayable = parseFloat(amount * ((rate - 3.28) / 100)).toFixed(2);
   const roi = parseFloat((amount / monthlyPayable).toFixed(2));
 
   return (

@@ -6,12 +6,14 @@ export default function InvestForm() {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const amount = searchParams.get('amount');
-  const rate = parseFloat(((100 / 60000) * amount).toFixed(2));
+  const rate = parseFloat((amount / 1000).toFixed(2));
   const [minOfMachines, setMinOfMachines] = useState(Math.ceil(amount / 12000));
+  const [maxOfMachines, setMaxOfMachines] = useState(Math.floor(amount / 6000));
 
   const handleAmountChange = e => {
     setSearchParams({amount: e.target.value});
     setMinOfMachines(Math.ceil(e.target.value / 12000));
+    setMaxOfMachines(Math.floor(e.target.value / 6000));
   }
 
   const handleSubmit = e => {
@@ -66,7 +68,7 @@ export default function InvestForm() {
             </div>
             <div>
               <label className="block font-medium mb-2" htmlFor="numberOfMachines">Anzahl der Automaten</label>
-              <input className="input w-full border border-gray-300" type="number" min={minOfMachines} name="numberOfMachines" id="numberOfMachines" placeholder="Maximal 12.000 EUR pro Automat" defaultValue={minOfMachines} required />
+              <input className="input w-full border border-gray-300" type="number" min={minOfMachines} max={maxOfMachines} name="numberOfMachines" id="numberOfMachines" placeholder="Mindestens 6000 EUR bis maximal 12000 EUR pro Maschine" required />
             </div>
           </div>
 

@@ -29,8 +29,8 @@ export default function DashboardContractDetails() {
     </main>
   );
 
-  const rate = parseFloat(((100 / 60000) * contract?.amount).toFixed(2));
-  const monthlyPayable = parseFloat(((8985.6 / 100) * (rate - 3.28)).toFixed(2));
+  const rate = parseFloat((contract?.amount / 1000).toFixed(2));
+  const monthlyPayable = parseFloat(contract?.amount * ((rate - 3.28) / 100)).toFixed(2);
 
   const handleDownload = () => {
     if (contract?.status === "pending") {
