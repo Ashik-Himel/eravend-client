@@ -27,7 +27,6 @@ export default function InvestForm() {
     const nid = e.target.nid.value;
     const idDate = e.target.idDate.value;
     const idAuthority = e.target.idAuthority.value;
-    const b2b = e.target.b2b.checked;
 
     if (!name && !company) {
       Swal.fire({
@@ -51,7 +50,6 @@ export default function InvestForm() {
     if (name) link += "&name=" + name;
     if (surname) link += "&surname=" + surname;
     if (company) link += "&company=" + company;
-    if (b2b) link += "&b2b=true"
 
     navigate(link);
   }
@@ -111,12 +109,7 @@ export default function InvestForm() {
           <label className="block font-medium mb-2" htmlFor="idAuthority">Ausstellende Behörde</label>
           <input className="input w-full border border-gray-300 mb-4" type="text" name="idAuthority" id="idAuthority" placeholder="Geben Sie Ihren Nachnamen ein" required />
 
-          <div className="flex justify-start items-center gap-2">
-            <input type="checkbox" name="b2b" id="b2b" />
-            <label htmlFor="b2b" className="cursor-pointer select-none">Ich bin ein B2B-Kunde</label>
-          </div>
-
-          <div className="flex justify-start items-center gap-2 mb-4">
+          <div className="flex justify-start items-center gap-2 mb-6">
             <input type="checkbox" name="policy" id="policy" required />
             <label htmlFor="policy" className="cursor-pointer select-none">Ich stimme der <Link to="/imprint" className="font-medium text-primary underline">Datenschutzrichtlinie</Link> von Eravend zu</label>
           </div>

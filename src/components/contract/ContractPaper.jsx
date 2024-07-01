@@ -19,11 +19,10 @@ export default function ContractPaper() {
   const nid = searchParams.get('nid');
   const idDate = searchParams.get('date');
   const idAuthority = searchParams.get('authority');
-  // const b2b = searchParams.get('b2b');
 
   const generatePDF = () => {
     setBtnLoading(true);
-    axiosPublic(`/api/contract-id?email=${email}`)
+    axiosPublic.post(`/api/contract-id?email=${email}`)
       .then(res => {
         let url = window.location.href;
         url = url.replace('contract', 'contract-pdf');
@@ -214,7 +213,7 @@ export default function ContractPaper() {
             <p className="mt-4">Mit der Unterschrift wird bestätigt, die Widerrufserklärung zur Kenntnis genommen zu haben, dass keine finanziellen Schwierigkeiten durch die Investition eintreten und den Allgemeinen Geschäftsbedingungen der EraVend GmbH & Co. KG zugestimmt wird.</p>
             <p>Der Investor muss keine Befüllarbeiten oder Service an den Automaten durchführen. Die gesamte Verwaltung, Befüllung und der Service werden von der EraVend GmbH & Co. KG übernommen.</p>
             <p className="mt-4"><span className="font-medium">Wichtiger Hinweis:</span> Dieses Investitionsangebot richtet sich ausschließlich an gewerbliche Investoren. Private Anleger sind von der Investition ausgeschlossen.</p>
-            <p>{idAuthority}, {format(idDate, "dd MMM, yyyy")}</p>
+            <p>Augsburg, {format(new Date(), "hh:mm aa :: dd MMM, yyyy")}</p>
           </div>
 
           <div className="mt-10 flex flex-wrap justify-start items-center gap-2">

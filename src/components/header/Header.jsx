@@ -1,5 +1,5 @@
-import { FaArrowLeft } from "react-icons/fa";
-import { FaXmark, FaBars  } from "react-icons/fa6";
+import { FaArrowLeft, FaPlay } from "react-icons/fa";
+import { FaXmark, FaBars } from "react-icons/fa6";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import machine from "../../assets/machine.png";
@@ -10,6 +10,7 @@ export default function Header() {
   const { pathname } = useLocation();
   const { readySectionRef, user, userRole, userLoaded } = useContextProvider();
   const [drawerShow, setDrawerShow] = useState(false);
+  const [videoShow, setVideoShow] = useState(false);
 
   const handleButtonClick = () => {
     window.scrollTo({
@@ -48,11 +49,23 @@ export default function Header() {
         <section className={`py-8 md:py-12 2xl:py-20 flex flex-col md:flex-row justify-between items-center gap-8 ${pathname === "/" ? "flex" : "hidden"}`}>
           <div className="w-full md:w-4/6" data-aos="fade-up">
             <h1 className="text-3xl xl:text-5xl 2xl:text-6xl font-medium mb-4 !leading-[1.4] xl:!leading-[1.2]">Willkommen bei Eravend Ihrer intelligenten Vending-Lösung</h1>
-            <p className="xl:text-xl mb-8">Sind Sie bereit, sich der Revolution im automatisierten Einzelhandel anzuschließen? Bei Eravend stellen wir nicht nur intelligente Verkaufsautomaten her; Wir schaffen Möglichkeiten für Investoren und Geschäftsinhaber, in der schnell wachsenden Vending-Branche erfolgreich zu sein.</p>
+            <p className="xl:text-xl mb-8">Sind Sie bereit, sich der Revolution im automatisierten Einzelhandel anzuschließen? Bei Eravend stellen wir nicht nur intelligente Verkaufsautomaten her-Wir schaffen Möglichkeiten für Investoren und Geschäftsinhaber, in der schnell wachsenden Vending-Branche erfolgreich zu sein.</p>
             <button type="button" className="btn btn-primary" onClick={handleButtonClick}>Checke Jetzt Aus</button>
           </div>
-          <div className="w-full md:w-2/6">
-            <img src={machine} alt="Machine Bild" className="w-full max-w-[350px] xl:max-w-[500px] mx-auto md:ml-auto md:mr-0" data-aos="fade-left" />
+          <div className="w-full md:w-2/6 relative">
+            <img src={machine} alt="Machine Bild" className="w-full max-w-[350px] xl:max-w-[500px] mx-auto md:ml-auto md:mr-0" />
+            <div className="bg-primary w-24 h-24 rounded-full absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-4xl text-white flex justify-center items-center cursor-pointer select-none" onClick={() => setVideoShow(true)}>
+              <FaPlay />
+            </div>
+          </div>
+        </section>
+
+        <section className={`fixed inset-0 bg-[rgba(0,0,0,0.8)] z-50 ${videoShow ? "block" : "hidden"}`}>
+          <div className="container flex justify-center items-center h-full">
+            <div className="text-5xl text-white absolute top-6 right-6 cursor-pointer select-none" onClick={()=> setVideoShow(false)}>
+              <FaXmark />
+            </div>
+            <iframe className="w-full max-w-[700px] mx-auto aspect-video" src="https://www.youtube.com/embed/h99kmY2mUJo?si=H8VS-aUJA4mpxmDZ" allowfullscreen></iframe>
           </div>
         </section>
       </div>

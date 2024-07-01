@@ -33,10 +33,11 @@ export default function SubmitContract() {
     formData.append('email', email);
     formData.append('file', file);
 
-    axiosPublic.put("/api/submit-contract", formData, {
+    axiosPublic.post("/api/submit-contract", formData, {
       headers: {
-        "Content-Type": "multipart/form-data"
-      }
+        'Content-Type': 'multipart/form-data'
+      },
+      withCredentials: true
     })
     .then(res => {
       if (res.data?.status === "unmatched") {

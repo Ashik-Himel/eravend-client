@@ -29,7 +29,7 @@ export default function Footer() {
               <div className="w-[140px] md:mx-auto">
                 <h4 className="text-2xl font-medium mb-2">Direktlinks</h4>
                 <div className="flex flex-col items-start">
-                  <Link to='/' className="text-primary font-medium">Heim</Link>
+                  <Link to='/' className="text-primary font-medium">Home</Link>
                   <Link to="/invest" className="text-primary font-medium">Investieren</Link>
                   <Link to="/imprint" className="text-primary font-medium">Impressum</Link>
                 </div>
@@ -41,7 +41,7 @@ export default function Footer() {
       <section className="bg-primary py-6">
         <div className="container">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 text-start md:text-center sm:text-left">
-            <p className="text-white !leading-[1.5]">Copyright &copy; 2018 - Alle Rechte vorbehalten von nvestiereindeinenpizzaautomaten.de</p>
+            <p className="text-white !leading-[1.5]">Copyright &copy; 2018 - Alle Rechte vorbehalten von EraVend</p>
             <div className="flex gap-3">
               <a className="bg-white text-primary w-10 h-10 rounded-full flex justify-center items-center text-xl" href="https://www.tiktok.com/@derpizzamat" target="_blank" rel="noopener noreferrer"><FaTiktok /></a>
               <a className="bg-white text-primary w-10 h-10 rounded-full flex justify-center items-center text-xl" href="https://www.instagram.com/derpizzamat" target="_blank" rel="noopener noreferrer"><FaInstagram /></a>

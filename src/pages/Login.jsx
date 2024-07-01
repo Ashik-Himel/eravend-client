@@ -44,7 +44,7 @@ export default function Login() {
 
     signInWithEmailAndPassword(auth, e.target.email.value, e.target.password.value)
       .then((userCredential) => {
-        axiosPublic.get(`/api/user-role?email=${e.target.email.value}`, {withCredentials: true})
+        axiosPublic.get(`/api/user-role?email=${e.target.email.value}`)
           .then(res => {
             setUser(userCredential.user);
             setUserRole(res.data?.role);

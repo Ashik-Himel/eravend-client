@@ -61,10 +61,11 @@ export default function ContractDetails() {
     formData.append('email', contract?.email);
     formData.append('file', file);
 
-    axiosPublic.put("/api/verify-contract", formData, {
+    axiosPublic.post("/api/verify-contract", formData, {
       headers: {
-        "Content-Type": "multipart/form-data"
-      }
+        'Content-Type': 'multipart/form-data',
+      },
+      withCredentials: true
     })
     .then(res => {
       Swal.fire({
