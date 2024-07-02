@@ -21,7 +21,7 @@ export default function DashboardHome() {
   const {data: contracts} = useQuery({
     queryKey: ["contract", user?.email],
     queryFn: async() => {
-      const res = await axiosPublic(`/api/user/contracts?email=${user?.email}`);
+      const res = await axiosPublic(`/api/user-contracts?email=${user?.email}`);
       return res.data;
     }
   })

@@ -51,7 +51,7 @@ export default function Login() {
           })
           .catch(error => {
             console.log("API Error: ", error);
-            toast.error(error);
+            toast.error(error.code);
           })
       })
       .catch((error) => {

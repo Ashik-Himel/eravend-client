@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import Swal from "sweetalert2";
 
@@ -7,20 +6,11 @@ export default function InvestForm() {
   const [searchParams, setSearchParams] = useSearchParams();
   const amount = searchParams.get('amount');
   const rate = parseFloat((amount / 1000).toFixed(2));
-  const [minOfMachines, setMinOfMachines] = useState(Math.ceil(amount / 12000));
-  const [maxOfMachines, setMaxOfMachines] = useState(Math.floor(amount / 6000));
-
-  const handleAmountChange = e => {
-    setSearchParams({amount: e.target.value});
-    setMinOfMachines(Math.ceil(e.target.value / 12000));
-    setMaxOfMachines(Math.floor(e.target.value / 6000));
-  }
 
   const handleSubmit = e => {
     e.preventDefault();
 
     const finalAmount = e.target.amount.value;
-    const numberOfMachines = e.target.numberOfMachines.value;
     const name = e.target.name.value;
     const surname = e.target.surname.value;
     const email = e.target.email.value;
@@ -39,16 +29,7 @@ export default function InvestForm() {
       return;
     }
 
-    if (numberOfMachines < Math.ceil(finalAmount / 12000)) {
-      Swal.fire({
-        title: "Fehler",
-        text: "Man muss die Zahl der Maschinen erhöhen!",
-        icon: "error"
-      });
-      return;
-    }
-
-    let link = `/contract?amount=${finalAmount}&machines=${numberOfMachines}&rate=${rate}&email=${email}&address=${address}&nid=${nid}&date=${idDate}&authority=${idAuthority}`;
+    let link = `/contract?amount=${finalAmount}&rate=${rate}&email=${email}&address=${address}&nid=${nid}&date=${idDate}&authority=${idAuthority}`;
     if (name) link += "&name=" + name;
     if (surname) link += "&surname=" + surname;
     if (company) link += "&company=" + company;
@@ -64,11 +45,11 @@ export default function InvestForm() {
           <div className="flex flex-col md:flex-row gap-x-6 gap-y-4 mb-4 [&>*]:flex-1">
             <div>
               <label className="block font-medium mb-2" htmlFor="amount">Betrag (€)</label>
-              <input className="input w-full border border-gray-300" type="number" min="6000" name="amount" id="amount" placeholder="Geben Sie den Betrag ein" defaultValue={amount} onChange={handleAmountChange} required />
+              <input className="input w-full border border-gray-300" type="number" min="6000" name="amount" id="amount" placeholder="Geben Sie den Betrag ein" defaultValue={amount} onChange={e => setSearchParams({amount: e.target.value})} required />
             </div>
             <div>
-              <label className="block font-medium mb-2" htmlFor="numberOfMachines">Anzahl der Automaten</label>
-              <input className="input w-full border border-gray-300" type="number" min={minOfMachines} max={maxOfMachines} name="numberOfMachines" id="numberOfMachines" placeholder="Mindestens 6000 EUR bis maximal 12000 EUR pro Maschine" required />
+              <label className="block font-medium mb-2" htmlFor="company">Unternehmen</label>
+              <input className="input w-full border border-gray-300" type="text" name="company" id="company" placeholder="Geben Sie Ihren Firmennamen ein" />
             </div>
           </div>
 
@@ -89,13 +70,10 @@ export default function InvestForm() {
               <input className="input w-full border border-gray-300" type="email" name="email" id="email" placeholder="Geben sie ihre E-Mail Adresse ein" required />
             </div>
             <div>
-              <label className="block font-medium mb-2" htmlFor="company">Unternehmen</label>
-              <input className="input w-full border border-gray-300" type="text" name="company" id="company" placeholder="Geben Sie Ihren Firmennamen ein" />
+              <label className="block font-medium mb-2" htmlFor="address">Adresse</label>
+              <input className="input w-full border border-gray-300" type="text" name="address" id="address" placeholder="Geben Sie Ihre Adresse ein" required />
             </div>
           </div>
-
-          <label className="block font-medium mb-2" htmlFor="address">Adresse</label>
-          <input className="input w-full border border-gray-300 mb-4" type="text" name="address" id="address" placeholder="Geben Sie Ihre Adresse ein" required />
 
           <div className="flex flex-col md:flex-row gap-x-6 gap-y-4 mb-4 [&>*]:flex-1">
             <div>
@@ -109,7 +87,7 @@ export default function InvestForm() {
           </div>
 
           <label className="block font-medium mb-2" htmlFor="idAuthority">Ausstellende Behörde</label>
-          <input className="input w-full border border-gray-300 mb-4" type="text" name="idAuthority" id="idAuthority" placeholder="Geben Sie Ihren Nachnamen ein" required />
+          <input className="input w-full border border-gray-300 mb-6" type="text" name="idAuthority" id="idAuthority" placeholder="Geben Sie Ihren Nachnamen ein" required />
 
           <div className="flex justify-start items-center gap-2 mb-6">
             <input type="checkbox" name="policy" id="policy" required />

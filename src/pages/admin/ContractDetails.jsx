@@ -20,13 +20,10 @@ export default function ContractDetails() {
   const {data: contract, refetch} = useQuery({
     queryKey: ["contracts", id],
     queryFn: async() => {
-      const res = await axiosPublic(`/api/contracts/${id}`);
+      const res = await axiosPublic(`/api/contract?id=${id}`);
       return res.data;
     }
   })
-  if (contract) {
-    console.log(contract)
-  }
 
   const handleDownload = () => {
     if (contract?.status === "pending") {
@@ -67,14 +64,13 @@ export default function ContractDetails() {
       },
       withCredentials: true
     })
-    .then(res => {
+    .then(() => {
       Swal.fire({
         title: "Verifiziert!",
         text: "Die Verifizierung dieses Vertragsdokuments war erfolgreich.",
         icon: "success",
       })
       refetch();
-      console.log(res.data);
     })
     .catch(error => {
       console.log(error);

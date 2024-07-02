@@ -16,9 +16,9 @@ export default function DashboardContractDetails() {
   }
 
   const {data: contract, isLoading} = useQuery({
-    queryKey: ['contract', id],
+    queryKey: ['contracts', id],
     queryFn: async() => {
-      const res = await axiosPublic(`/api/contracts/${id}`)
+      const res = await axiosPublic(`/api/contract?id=${id}`)
       return res.data;
     }
   })

@@ -9,7 +9,7 @@ export default function ContractPaper() {
   const [btnLoading, setBtnLoading] = useState(false);
   const [searchParams] = useSearchParams();
   const amount = searchParams.get('amount');
-  const numberOfMachines = searchParams.get('machines');
+  const numberOfMachines = Math.ceil(amount / 12000);
   const rate = searchParams.get('rate');
   const name = searchParams.get('name');
   const surname = searchParams.get('surname');
@@ -22,7 +22,7 @@ export default function ContractPaper() {
 
   const generatePDF = () => {
     setBtnLoading(true);
-    axiosPublic.post(`/api/contract-id?email=${email}`)
+    axiosPublic(`/api/contract-id?email=${email}`)
       .then(res => {
         let url = window.location.href;
         url = url.replace('contract', 'contract-pdf');
@@ -59,7 +59,6 @@ export default function ContractPaper() {
                 text: "Download des Vertragspapiers fehlgeschlagen!",
                 icon: "error"
               })
-              console.log("Error Occurred!");
               setBtnLoading(false);
             }
           })
@@ -106,7 +105,7 @@ export default function ContractPaper() {
             <p>Der Investor beteiligt sich finanziell an einem oder mehreren Automaten (im Folgenden &ldquo;Projekt&rdquo;).</p>
             <p>Die Gewinnbeteiligung bezieht sich ausschließlich auf den mitinvestierten Automaten und nicht auf das Unternehmen selbst.</p>
             <p><span className="font-medium">Anzahl der Automaten:</span> {numberOfMachines}</p>
-            <p><span className="font-medium">Investitionsbetrag:</span> {amount} EUR (maximal 12.000 EUR pro Automat)</p>
+            <p><span className="font-medium">Investitionsbetrag:</span> {amount} EUR ({(amount / numberOfMachines).toFixed(2)} EUR pro Maschine)</p>
             <p><span className="font-medium">Prozentsatz der Gewinnbeteiligung:</span> {rate}%</p>
           </div>
 

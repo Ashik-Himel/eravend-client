@@ -17,9 +17,6 @@ export default function ProfitDetails() {
   const rate = parseFloat((amount / 1000).toFixed(2));
   const monthlyPayable = parseFloat(amount * ((rate - 3.28) / 100)).toFixed(2);
   const roi = parseFloat((amount / monthlyPayable).toFixed(2));
-  console.log(rate);
-  console.log(monthlyPayable);
-  console.log(roi);
 
   return (
     <main>

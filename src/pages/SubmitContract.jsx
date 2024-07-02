@@ -67,7 +67,6 @@ export default function SubmitContract() {
           }
         });
         setBtnLoading(false);
-        console.log(res.data);
       }
     })
     .catch(error => {

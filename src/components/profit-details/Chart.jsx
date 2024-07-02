@@ -54,5 +54,5 @@ export default function Chart({monthlyPayable}) {
 }
 
 Chart.propTypes = {
-  monthlyPayable: PropTypes.number
+  monthlyPayable: PropTypes.string
 }

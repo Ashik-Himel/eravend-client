@@ -65,7 +65,7 @@ export default function Header() {
             <div className="text-5xl text-white absolute top-6 right-6 cursor-pointer select-none" onClick={()=> setVideoShow(false)}>
               <FaXmark />
             </div>
-            <iframe className="w-full max-w-[700px] mx-auto aspect-video" src="https://www.youtube.com/embed/h99kmY2mUJo?si=H8VS-aUJA4mpxmDZ" allowFullScreen></iframe>
+            <iframe className="w-full max-w-[700px] mx-auto aspect-video" src="https://www.youtube.com/embed/x76L7sZYGHQ?si=T2hjAtuNwjOAzYC0" allowFullScreen></iframe>
           </div>
         </section>
       </div>

@@ -16,8 +16,8 @@ export default function Details({amount, frequencies, frequency, rate, roi, mont
             !pathname.startsWith('/invest') && <span className="block"><span className="font-medium">Ausschüttungsfrequenz:</span> {frequencies[frequency]}</span>
           }
           <span className="block"><span className="font-medium">ROI:</span> {roi} Monate</span>
-          <span className="block"><span className="font-medium">Gewinnbeteiligung:</span> {(rate * ((frequency === "monthly") ? 1 : (frequency === "quarterly") ? 3 : 12)).toFixed(2)} % (pro {(frequency === "monthly") ? "Monat" : (frequency === "quarterly") ? "Quartal" : "Jahr"})</span>
-          <span className="block"><span className="font-medium">Verdienst:</span> {(monthlyPayable * ((frequency === "monthly") ? 1 : (frequency === "quarterly") ? 3 : 12)).toFixed(2)} € (pro {(frequency === "monthly") ? "Monat" : (frequency === "quarterly") ? "Quartal" : "Jahr"})</span>
+          <span className="block"><span className="font-medium">Gewinnbeteiligung:</span> {(rate * ((frequency === "yearly") ? 12 : (frequency === "quarterly") ? 3 : 1)).toFixed(2)} % (pro {(frequency === "yearly") ? "Jahr" : (frequency === "quarterly") ? "Quartal" : "Monat"})</span>
+          <span className="block"><span className="font-medium">Verdienst:</span> {(monthlyPayable * ((frequency === "yearly") ? 12 : (frequency === "quarterly") ? 3 : 1)).toFixed(2)} € (pro {(frequency === "yearly") ? "Jahr" : (frequency === "quarterly") ? "Quartal" : "Monat"})</span>
         </div>
       </div>
     </section>
