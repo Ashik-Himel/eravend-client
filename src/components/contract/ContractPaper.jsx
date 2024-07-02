@@ -1,11 +1,12 @@
 import { format } from "date-fns";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { useState } from "react";
 import Swal from "sweetalert2";
 
 export default function ContractPaper() {
   const axiosPublic = useAxiosPublic();
+  const navigate = useNavigate();
   const [btnLoading, setBtnLoading] = useState(false);
   const [searchParams] = useSearchParams();
   const amount = searchParams.get('amount');
@@ -22,7 +23,7 @@ export default function ContractPaper() {
 
   const generatePDF = () => {
     setBtnLoading(true);
-    axiosPublic(`/api/contract-id?email=${email}`)
+    axiosPublic.post("/api/contract-id", {email})
       .then(res => {
         let url = window.location.href;
         url = url.replace('contract', 'contract-pdf');
@@ -53,6 +54,7 @@ export default function ContractPaper() {
               link.click();
               document.body.removeChild(link);
               setBtnLoading(false);
+              navigate("/");
             } else {
               Swal.fire({
                 title: "Fehler",
