@@ -2,8 +2,7 @@ import axios from "axios";
 
 const useAxiosPublic = () => {
   const axiosPublic = axios.create({
-    // baseURL: 'https://server.investiereindeinenpizzaautomaten.de'
-    baseURL: 'http://localhost:5987'
+    baseURL: 'https://server.investiereindeinenpizzaautomaten.de'
   })
 
   return axiosPublic;
