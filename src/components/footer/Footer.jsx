@@ -17,7 +17,7 @@ export default function Footer() {
               <h4 className="text-2xl font-medium mb-2">EraVend GmbH & Co. KG</h4>
               <address className="not-italic !leading-[1.5] mb-4">Guldenstrasse 9, 86343 Königsbrunn, Germany</address>
               <span className="block"><span className="font-medium">Telefon:</span> <a className="underline" href="tel:+4982120969113" target="_blank" rel="noopener noreferrer">+49 821 20969113</a></span>
-              <span className="block mb-6"><span className="font-medium">E-Mail:</span> <a className="underline" href="mailto:info@eravend.com" target="_blank" rel="noopener noreferrer">info@eravend.com</a></span>
+              <span className="block mb-6"><span className="font-medium">E-Mail:</span> <a className="underline" href="mailto:investment@eravend.com" target="_blank" rel="noopener noreferrer">investment@eravend.com</a></span>
               <div className="flex gap-2">
                 <a className="bg-primary text-white w-10 h-10 rounded-full flex justify-center items-center text-xl" href="https://www.tiktok.com/@derpizzamat" target="_blank" rel="noopener noreferrer"><FaTiktok /></a>
                 <a className="bg-primary text-white w-10 h-10 rounded-full flex justify-center items-center text-xl" href="https://www.instagram.com/derpizzamat" target="_blank" rel="noopener noreferrer"><FaInstagram /></a>

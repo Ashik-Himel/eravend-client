@@ -17,7 +17,7 @@ export default function Imprint() {
             <address className="mb-4 not-italic">Guldenstraße 9, 86343 Königsbrunn, Deutschland</address>
 
             <p><span className="font-medium text-black">Telefon:</span> <a className="underline" href="tel:+4982120969113" target="_blank" rel="noopener noreferrer">+49 821 20969113</a></p>
-            <p className="mb-4"><span className="font-medium text-black">E-Mail:</span> <a className="underline" href="mailto:info@eravend.com" target="_blank" rel="noopener noreferrer">info@eravend.com</a></p>
+            <p className="mb-4"><span className="font-medium text-black">E-Mail:</span> <a className="underline" href="mailto:investment@eravend.com" target="_blank" rel="noopener noreferrer">investment@eravend.com</a></p>
 
             <p className="font-medium text-black">Handelsregistereintrag:</p>
             <p>Amtsgericht Augsburg</p>

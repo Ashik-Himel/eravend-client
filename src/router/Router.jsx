@@ -17,6 +17,7 @@ import AdminLayout from "../layout/AdminLayout";
 import AdminHome from "../pages/admin/AdminHome";
 import ContractDetails from "../pages/admin/ContractDetails";
 import DashboardContractDetails from "../pages/dashboard/DashboardContractDetails";
+import CookiePolicy from "../pages/CookiePolicy";
 
 export const router = createBrowserRouter([
   {
@@ -42,6 +43,10 @@ export const router = createBrowserRouter([
       {
         path: '/imprint',
         element: <Imprint />
+      },
+      {
+        path: '/cookie-policy',
+        element: <CookiePolicy />
       },
       {
         path: '/submit-contract',
