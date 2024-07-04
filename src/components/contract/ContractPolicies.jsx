@@ -11,7 +11,7 @@ export default function ContractPolicies() {
   const surname = searchParams.get('surname');
   const email = searchParams.get('email');
   const company = searchParams.get('company');
-  const address = searchParams.get('address');
+  const address = `${searchParams.get('address')}, ${searchParams.get('postal')}, ${searchParams.get('city')}`;
   const nid = searchParams.get('nid');
   const idDate = searchParams.get('date');
   const idAuthority = searchParams.get('authority');
@@ -168,7 +168,7 @@ export default function ContractPolicies() {
         <p className="mt-6"><span className="font-medium">Wichtiger Hinweis:</span> Dieses Investitionsangebot richtet sich ausschließlich an gewerbliche Investoren. Private Anleger sind von der Investition ausgeschlossen. Das maßgebliche Datum für den Beginn der Fristen für den Bau ist das Datum, an dem die Eravend GmbH & Co. KG unterschrieben hat, nicht das Datum der Unterschrift des Kunden. Die Zahlung muss innerhalb von 7 Tagen nach der Unterschrift des Investors geleistet werden.</p>
       </div>
 
-      <p className="mt-6">Augsburg, den {format(new Date(), "dd.MM.yyyy")}</p>
+      <p className="mt-6">Augsburg, den {format(new Date(), "hh:mm aa, dd MMM, yyyy")}</p>
 
       <div className="mt-16 flex flex-wrap justify-between items-center gap-8">
         <span className="block w-max">EraVend GmbH & Co. KG</span>

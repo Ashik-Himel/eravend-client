@@ -15,7 +15,7 @@ export default function ContractPaper() {
   const surname = searchParams.get('surname');
   const email = searchParams.get('email');
   const company = searchParams.get('company');
-  const address = searchParams.get('address');
+  const address = `${searchParams.get('address')}, ${searchParams.get('postal')}, ${searchParams.get('city')}`;
   const nid = searchParams.get('nid');
   const idDate = searchParams.get('date');
   const idAuthority = searchParams.get('authority');
@@ -45,13 +45,7 @@ export default function ContractPaper() {
         axiosPublic.post('/api/contract', info)
           .then(res => {
             if (res.data?.url) {
-              const link = document.createElement('a');
-              link.href = res.data.url;
-              link.setAttribute("target", "_blank");
-              link.setAttribute('download', `contract-paper${res.data.url.substring(res.data.url.lastIndexOf("."))}`);
-              document.body.appendChild(link);
-              link.click();
-              document.body.removeChild(link);
+              window.open(res.data.url);
               setBtnLoading(false);
               navigate("/submit-contract");
             } else {

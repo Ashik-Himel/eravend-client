@@ -16,6 +16,8 @@ export default function InvestForm() {
     const email = e.target.email.value;
     const company = e.target.company.value;
     const address = e.target.address.value;
+    const postalCode = e.target.postalCode.value;
+    const city = e.target.city.value;
     const nid = e.target.nid.value;
     const idDate = e.target.idDate.value;
     const idAuthority = e.target.idAuthority.value;
@@ -29,7 +31,7 @@ export default function InvestForm() {
       return;
     }
 
-    let link = `/contract?amount=${finalAmount}&rate=${rate}&email=${email}&address=${address}&nid=${nid}&date=${idDate}&authority=${idAuthority}`;
+    let link = `/contract?amount=${finalAmount}&rate=${rate}&email=${email}&address=${address}&postal=${postalCode}&city=${city}&nid=${nid}&date=${idDate}&authority=${idAuthority}`;
     if (name) link += "&name=" + name;
     if (surname) link += "&surname=" + surname;
     if (company) link += "&company=" + company;
@@ -72,6 +74,17 @@ export default function InvestForm() {
             <div>
               <label className="block font-medium mb-2" htmlFor="address">Adresse</label>
               <input className="input w-full border border-gray-300" type="text" name="address" id="address" placeholder="Geben Sie Ihre Adresse ein" required />
+            </div>
+          </div>
+
+          <div className="flex flex-col md:flex-row gap-x-6 gap-y-4 mb-4 [&>*]:flex-1">
+            <div>
+              <label className="block font-medium mb-2" htmlFor="postalCode">Postleitzahl</label>
+              <input className="input w-full border border-gray-300" type="text" name="postalCode" id="postalCode" placeholder="Geben Sie die Postleitzahl Ihres Gebiets ein" required />
+            </div>
+            <div>
+              <label className="block font-medium mb-2" htmlFor="city">Stadt</label>
+              <input className="input w-full border border-gray-300" type="text" name="city" id="city" placeholder="Geben Sie Ihre Stadt ein" required />
             </div>
           </div>
 

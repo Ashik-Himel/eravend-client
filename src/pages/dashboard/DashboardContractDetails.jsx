@@ -9,6 +9,8 @@ import Chart from "../../components/profit-details/Chart";
 export default function DashboardContractDetails() {
   const axiosPublic = useAxiosPublic();
   const {id} = useParams();
+  const rate = parseFloat((contract?.amount / 1000).toFixed(2));
+  const monthlyPayable = parseFloat(contract?.amount * ((rate - 3.28) / 100)).toFixed(2);
   const statusPlaceholder = {
     pending: "Nicht Bezahlt",
     submitted: "Wird Bearbeitet",
@@ -23,35 +25,20 @@ export default function DashboardContractDetails() {
     }
   })
 
+  const handleDownload = () => {
+    if (contract?.status === "pending") {
+      window.open(contract?.contract);
+    }
+    else {
+      window.open(contract?.[contract?.status]);
+    }
+  }
+
   if (isLoading) return (
     <main className="mt-10 text-center">
       <span className="loading loading-spinner loading-lg text-primary"></span>
     </main>
   );
-
-  const rate = parseFloat((contract?.amount / 1000).toFixed(2));
-  const monthlyPayable = parseFloat(contract?.amount * ((rate - 3.28) / 100)).toFixed(2);
-
-  const handleDownload = () => {
-    if (contract?.status === "pending") {
-      const link = document.createElement('a');
-      link.href = contract?.contract;
-      link.setAttribute("target", "_blank");
-      link.setAttribute('download', `contract-paper${contract?.contract.substring(contract?.contract.lastIndexOf("."))}`);
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    }
-    else {
-      const link = document.createElement('a');
-      link.href = contract?.[contract?.status];
-      link.setAttribute("target", "_blank");
-      link.setAttribute('download', `contract-paper${contract?.[contract?.status].substring(contract?.[contract?.status].lastIndexOf("."))}`);
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    }
-  }
 
   return (
     <main className="mt-4 mb-12">
