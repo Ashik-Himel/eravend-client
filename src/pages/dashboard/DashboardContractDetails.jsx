@@ -9,14 +9,7 @@ import Chart from "../../components/profit-details/Chart";
 export default function DashboardContractDetails() {
   const axiosPublic = useAxiosPublic();
   const {id} = useParams();
-  const rate = parseFloat((contract?.amount / 1000).toFixed(2));
-  const monthlyPayable = parseFloat(contract?.amount * ((rate - 3.28) / 100)).toFixed(2);
-  const statusPlaceholder = {
-    pending: "Nicht Bezahlt",
-    submitted: "Wird Bearbeitet",
-    verified: "Genehmigt"
-  }
-
+  
   const {data: contract, isLoading} = useQuery({
     queryKey: ['contracts', id],
     queryFn: async() => {
@@ -25,12 +18,30 @@ export default function DashboardContractDetails() {
     }
   })
 
+  const rate = (contract?.amount / 1000).toFixed(2);
+  const monthlyPayable = (8500 * ((rate - 3.28) / 100)).toFixed(2);
+  const statusPlaceholder = {
+    pending: "Nicht Bezahlt",
+    submitted: "Wird Bearbeitet",
+    verified: "Genehmigt"
+  }
+
   const handleDownload = () => {
     if (contract?.status === "pending") {
-      window.open(contract?.contract);
+      const link = document.createElement('a');
+      link.href = contract?.contract;
+      link.download = `contract-paper${contract?.contract?.substring(contract?.contract?.lastIndexOf("."))}`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
     }
     else {
-      window.open(contract?.[contract?.status]);
+      const link = document.createElement('a');
+      link.href = contract?.[contract?.status];
+      link.download = `contract-paper${contract?.[contract?.status]?.substring(contract?.[contract?.status]?.lastIndexOf("."))}`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
     }
   }
 

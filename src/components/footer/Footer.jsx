@@ -40,8 +40,8 @@ export default function Footer() {
       </section>
       <section className="bg-primary py-6">
         <div className="container">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 text-start md:text-center sm:text-left">
-            <p className="text-white !leading-[1.5]">Copyright &copy; 2018 - Alle Rechte vorbehalten von EraVend</p>
+          <div className="flex flex-col md:flex-row justify-between items-center gap-6 text-start md:text-center sm:text-left">
+            <p className="text-white !leading-[1.5] text-center md:text-start">Copyright &copy; 2018 - Alle Rechte vorbehalten von EraVend. Dies stellt keine Anlageberatung dar.</p>
             <div className="flex gap-3">
               <a className="bg-white text-primary w-10 h-10 rounded-full flex justify-center items-center text-xl" href="https://www.tiktok.com/@derpizzamat" target="_blank" rel="noopener noreferrer"><FaTiktok /></a>
               <a className="bg-white text-primary w-10 h-10 rounded-full flex justify-center items-center text-xl" href="https://www.instagram.com/derpizzamat" target="_blank" rel="noopener noreferrer"><FaInstagram /></a>

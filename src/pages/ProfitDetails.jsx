@@ -7,16 +7,16 @@ import InvestNow from "../components/profit-details/InvestNow";
 
 export default function ProfitDetails() {
   const [searchParams] = useSearchParams();
-  const amount = parseFloat(searchParams.get('amount'));
+  const amount = searchParams.get('amount');
   const frequency = searchParams.get('frequency');
   const frequencies = {
     monthly: 'Monatlich',
     quarterly: 'Quartalweise',
     yearly: 'Jährlich'
   }
-  const rate = parseFloat((amount / 1000).toFixed(2));
-  const monthlyPayable = parseFloat(amount * ((rate - 3.28) / 100)).toFixed(2);
-  const roi = parseFloat((amount / monthlyPayable).toFixed(2));
+  const rate = (amount / 1000).toFixed(2);
+  const monthlyPayable = (8500 * ((rate - 3.28) / 100)).toFixed(2);
+  const roi = (amount / monthlyPayable).toFixed(2);
 
   return (
     <main>

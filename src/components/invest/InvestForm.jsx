@@ -5,7 +5,7 @@ export default function InvestForm() {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const amount = searchParams.get('amount');
-  const rate = parseFloat((amount / 1000).toFixed(2));
+  const rate = (amount / 1000).toFixed(2);
 
   const handleSubmit = e => {
     e.preventDefault();

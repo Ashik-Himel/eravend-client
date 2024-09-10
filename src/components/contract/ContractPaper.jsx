@@ -45,9 +45,21 @@ export default function ContractPaper() {
         axiosPublic.post('/api/contract', info)
           .then(res => {
             if (res.data?.url) {
-              window.open(res.data.url);
+              Swal.fire({
+                title: "Erfolg",
+                text: "Vertrag erfolgreich erstellt",
+                icon: "success"
+              })
+              .then(() => {
+                const link = document.createElement('a');
+                link.href = res.data.url;
+                link.download = `contract-paper${res.data.url?.substring(res.data.url?.lastIndexOf("."))}`;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                navigate("/submit-contract");
+              })
               setBtnLoading(false);
-              navigate("/submit-contract");
             } else {
               Swal.fire({
                 title: "Fehler",
