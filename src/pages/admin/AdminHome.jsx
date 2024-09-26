@@ -1,6 +1,4 @@
-import { signOut } from "firebase/auth";
 import { Helmet } from "react-helmet-async";
-import { auth } from "../../config/firebase.config";
 import toast from "react-hot-toast";
 import useContextProvider from "../../hooks/useContextProvider";
 import { useQuery } from "@tanstack/react-query";
@@ -30,7 +28,7 @@ export default function AdminHome() {
   }
 
   const handleLogout = () => {
-    signOut(auth)
+    axiosPublic('/api/logout', {withCredentials: true})
       .then(() => {
         setUser(null);
         setUserRole(null);

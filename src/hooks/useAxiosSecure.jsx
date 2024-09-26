@@ -5,7 +5,8 @@ const useAxiosSecure = () => {
   const {user} = useUserContext();
 
   const axiosSecure = axios.create({
-    baseURL: 'https://server.investiereindeinenpizzaautomaten.de',
+    baseURL: 'https://api.invest.eravend.com',
+    // baseURL: 'http://localhost:5987',
     withCredentials: true,
     headers: {
       Authorization: user?.email

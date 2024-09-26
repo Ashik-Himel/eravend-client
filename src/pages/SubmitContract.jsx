@@ -39,38 +39,35 @@ export default function SubmitContract() {
       },
       withCredentials: true
     })
-    .then(res => {
-      if (res.data?.status === "unmatched") {
+    .then(() => {
+      Swal.fire({
+        title: "Erfolgreich Eingereicht!",
+        text: "Das Vertragsdokument wurde erfolgreich übermittelt. Überprüfen Sie Ihre E-Mail, um die Informationen zu erhalten.",
+        icon: "success",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate('/');
+        }
+      });
+      setBtnLoading(false);
+    })
+    .catch(error => {
+      if (error.response.status === 404) {
         Swal.fire({
           title: "Fehler",
           text: "Zu diesen Angaben wurde kein Vertrag gefunden.",
           icon: "error",
         })
-        setBtnLoading(false);
       }
-      else if (res.data?.status === "wrong id") {
+      else if (error.response.status === 400) {
         Swal.fire({
           title: "Fehler",
           text: "Sie haben eine falsche ID eingegeben.",
           icon: "error",
         })
-        setBtnLoading(false);
+      } else {
+        console.log(error);
       }
-      else {
-        Swal.fire({
-          title: "Erfolgreich Eingereicht!",
-          text: "Das Vertragsdokument wurde erfolgreich übermittelt. Überprüfen Sie Ihre E-Mail, um die Informationen zu erhalten.",
-          icon: "success",
-        }).then((result) => {
-          if (result.isConfirmed) {
-            navigate('/');
-          }
-        });
-        setBtnLoading(false);
-      }
-    })
-    .catch(error => {
-      console.log(error);
       setBtnLoading(false);
     })
   }

@@ -1,14 +1,14 @@
-import { sendPasswordResetEmail, signInWithEmailAndPassword } from "firebase/auth";
 import { FaEye, FaEyeSlash  } from "react-icons/fa";
 import { Helmet } from "react-helmet-async";
-import { auth } from "../config/firebase.config";
 import useAxiosPublic from "../hooks/useAxiosPublic";
 import useContextProvider from "../hooks/useContextProvider";
 import toast from "react-hot-toast";
 import { useState } from "react";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
+  const navigate = useNavigate();
   const axiosPublic = useAxiosPublic();
   const {setUser, setUserRole} = useContextProvider();
   const [showPass, setShowPass] = useState(false);
@@ -23,18 +23,26 @@ export default function Login() {
       confirmButtonText: "Fortfahren"
     }).then((result) => {
       if (result.isConfirmed) {
-        sendPasswordResetEmail(auth, result.value)
-          .then(() => {
+        axiosPublic.post('/api/forgot-password', {email: result.value})
+         .then(() => {
             Swal.fire({
               title: "E-Mail gesendet",
               text: "Überprüfe deinen Posteingang",
               icon: "success"
             });
-          })
-          .catch(error => {
+         })
+         .catch(error => {
+           if (error.response.status === 400) {
+            Swal.fire({
+              title: "Fehler",
+              text: "Benutzer mit dieser E-Mail nicht gefunden",
+              icon: "error"
+            });
+           } else {
             console.log(error);
             toast.error(error.code);
-          })
+           }
+         })
       }
     });
   }
@@ -42,21 +50,29 @@ export default function Login() {
   const handleLogin = e => {
     e.preventDefault();
 
-    signInWithEmailAndPassword(auth, e.target.email.value, e.target.password.value)
-      .then((userCredential) => {
-        axiosPublic.get(`/api/user-role?email=${e.target.email.value}`)
-          .then(res => {
-            setUser(userCredential.user);
-            setUserRole(res.data?.role);
-          })
-          .catch(error => {
-            console.log("API Error: ", error);
-            toast.error(error.code);
-          })
+    const email =  e.target.email.value;
+    const password = e.target.password.value;
+    axiosPublic.post('/api/login', {email, password}, {withCredentials: true})
+      .then(res => {
+        setUser(res.data.user);
+        setUserRole(res.data.user.role);
+        if (res.data.user.role === 'admin') {
+          navigate('/admin');
+        } else if (res.data.user.role === 'investor') {
+          navigate('/dashboard');
+        }
       })
-      .catch((error) => {
-        console.log("Firebase Error: ", error);
-        toast.error(error.code)
+      .catch(error => {
+        if (error.response?.status === 401 || error.response?.status === 404) {
+          Swal.fire({
+            title: "Fehler",
+            text: "Ungültige E-Mail oder ungültiges Passwort",
+            icon: "error"
+          })
+        } else {
+          console.log("API Error: ", error);
+          toast.error(error.code);
+        }
       })
   }
 

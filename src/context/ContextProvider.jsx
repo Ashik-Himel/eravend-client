@@ -1,8 +1,7 @@
 import { createContext, useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
 import useAxiosPublic from "../hooks/useAxiosPublic";
-import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "../config/firebase.config";
+import getCookie from "../utils/getCookie";
 
 export const Provider = createContext(null);
 
@@ -14,19 +13,22 @@ export default function ContextProvider({children}) {
   const [userLoaded, setUserLoaded] = useState(false);
 
   useEffect(() => {
-    const unSubscribe = onAuthStateChanged(auth, user => {
-      setUser(user);
-      if (user?.email) {
-        axiosPublic.get(`/api/user-role?email=${user.email}`)
-          .then(res => {
-            setUserRole(res.data?.role);
+    const token = getCookie('token');
+    if (token) {
+      axiosPublic('/api/verify-login', {withCredentials: true})
+        .then(res => {
+          if (res.data?.user) {
+            setUser(res.data?.user);
+            setUserRole(res.data?.user?.role);
             setUserLoaded(true);
-          })
-      } else {
-        setUserLoaded(true);
-      }
-    });
-    return () => unSubscribe(); 
+          }
+        })
+        .catch(() => {
+          setUserLoaded(true);
+        })
+    } else {
+      setUserLoaded(true);
+    }
   }, []);
 
   const value = {

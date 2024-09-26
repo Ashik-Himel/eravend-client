@@ -53,6 +53,7 @@ export default function ContractPaper() {
               .then(() => {
                 const link = document.createElement('a');
                 link.href = res.data.url;
+                link.target = '_blank';
                 link.download = `contract-paper${res.data.url?.substring(res.data.url?.lastIndexOf("."))}`;
                 document.body.appendChild(link);
                 link.click();

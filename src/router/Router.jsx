@@ -18,6 +18,7 @@ import AdminHome from "../pages/admin/AdminHome";
 import ContractDetails from "../pages/admin/ContractDetails";
 import DashboardContractDetails from "../pages/dashboard/DashboardContractDetails";
 import CookiePolicy from "../pages/CookiePolicy";
+import ResetPassword from "../pages/ResetPassword";
 
 export const router = createBrowserRouter([
   {
@@ -55,6 +56,10 @@ export const router = createBrowserRouter([
       {
         path: '/login',
         element: <UserRoutesAlt><Login /></UserRoutesAlt>
+      },
+      {
+        path: '/reset-password/:token',
+        element: <UserRoutesAlt><ResetPassword /></UserRoutesAlt>
       }
     ]
   },
